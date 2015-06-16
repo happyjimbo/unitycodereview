@@ -12,16 +12,21 @@ namespace MatchTileGrid
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
 
+		public IEnumerator enumerator { get; private set; }
+
 		public void Execute()
 		{
-			Coroutiner.StartCoroutine (Loop ());
+			enumerator = Loop ();
+			Coroutiner.StartCoroutine (enumerator);
 		}
 
 		private IEnumerator Loop()
 		{
 			yield return new WaitForSeconds (0.05f); 
 			CheckIfEmptySpaceNearBy ();
-			Coroutiner.StartCoroutine (Loop ());
+
+			enumerator = Loop ();
+			Coroutiner.StartCoroutine (enumerator);
 		}
 
 		private void CheckIfEmptySpaceNearBy()
