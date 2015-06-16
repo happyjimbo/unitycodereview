@@ -18,11 +18,7 @@ namespace MatchTileGrid
 		public void Remove(MatchTile matchTile)
 		{				
 			matchTile.tileObject.transform.DOKill ();
-
-			Vector3 endPos = new Vector3(4, 4, 0);
-
-			matchTile.tileObject.transform.DOScale (GetTileScale(), 0.3f);
-			matchTile.tileObject.transform.DOLocalMove (endPos, 0.5f).OnComplete( () => PoolObject(matchTile) );
+			matchTile.tileObject.transform.DOScale (GetTileScale (), 0.3f).OnComplete (() => PoolObject (matchTile));
 
 			matchTileGridModel.RemoveTile (matchTile.position);
 		}
