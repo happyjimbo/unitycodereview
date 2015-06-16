@@ -12,6 +12,9 @@ namespace MatchTileGrid
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
 
+		private List<MatchTile> matchTileList = new List<MatchTile>();
+		private List<Vector2> matchTilePositions = new List<Vector2>();
+
 		public void Execute()
 		{
 			Shuffle ();
@@ -19,8 +22,8 @@ namespace MatchTileGrid
 
 		private void Shuffle()
 		{
-			List<MatchTile> matchTileList = new List<MatchTile>();
-			List<Vector2> matchTilePositions = new List<Vector2>();
+			matchTileList.Clear ();
+			matchTilePositions.Clear ();
 
 			Dictionary<Vector2, MatchTile> matchTiles = matchTileGridModel.GetMatchTiles ();
 
