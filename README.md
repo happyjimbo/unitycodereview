@@ -1,6 +1,6 @@
 # README #
 
-This project is built with Unity 4.6, to run this select 'Open Project' from the File menu in Unity and point to the root directory.
+This project is built with Unity 4.6, to open in Unity select 'Open Project' from the File menu in Unity and point to the root directory.
 
 ### What is this repository for? ###
 
