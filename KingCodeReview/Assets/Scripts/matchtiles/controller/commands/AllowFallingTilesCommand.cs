@@ -10,9 +10,12 @@ namespace MatchTileGrid
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
 
+		public IEnumerator enumerator { get; private set; }
+
 		public void Execute ()
 		{
-			Coroutiner.StartCoroutine (Allow ());
+			enumerator = Allow ();
+			Coroutiner.StartCoroutine (enumerator);
 		}
 
 		private IEnumerator Allow()

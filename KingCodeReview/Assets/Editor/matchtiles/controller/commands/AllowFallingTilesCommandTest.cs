@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
-using MatchTileGrid;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -14,38 +13,63 @@ namespace MatchTileGrid
 	internal class AllowFallingTilesCommandTest
 	{
 		private AllowFallingTilesCommand allowFallingTilesCommand;
-		private MatchTileGridModel matchTileGridModel;
+		private IMatchTileGridModel matchTileGridModel;
 
 		[SetUp]
 		public void SetUp()
 		{
-			matchTileGridModel = Substitute.For<MatchTileGridModel>();
+			matchTileGridModel = Substitute.For<IMatchTileGridModel>();
 
 			allowFallingTilesCommand = new AllowFallingTilesCommand ();
 			allowFallingTilesCommand.matchTileGridModel = matchTileGridModel;
+
+			Messenger.CleanAndDestroy();
 		}
 
 		[Test]
-		public void Given_When_Then()
+		public void GivenPauseTilesFallingTrue_WhenIEnumeratorMoveNext_ThenPauseTilesFallingSetToFalse()
 		{
+			matchTileGridModel.pauseTilesFalling = true;
+
 			allowFallingTilesCommand.Execute ();
 
-			matchTileGridModel.Received ().pauseTilesFalling = false;
-			matchTileGridModel.Received ().movesRemaining--;
+			IEnumerator iEnum = allowFallingTilesCommand.enumerator;
+			iEnum.MoveNext ();
+			iEnum.MoveNext ();
 
-			//objectPoolModel.Received().AddObjectPoolEntry(Arg.Any<ObjectPoolEntry>());
+			Assert.False (matchTileGridModel.pauseTilesFalling);
 		}
 
-		/*[Test]
-		public void GivenAddEveryTypeOfMatchTileTypeToObjectPoolExecptNullValue_WhenExecute_ThenVerifyObjectPoolEntryDataAddedEveryMatchTileType()
+		[Test]
+		public void GivenMovesRemainingSetToOne_WhenIEnumeratorMoveNext_ThenMovesRemainingSetToZero()
 		{
-			addMatchTilesToObjectPoolCommand.Execute ();
+			matchTileGridModel.movesRemaining = 1;
 
-			MatchTileType[] matchTileTypes = (MatchTileType[]) Enum.GetValues(typeof(MatchTileType));
-			// -1 as we don't want to count for the Null value
-			int allMatchTiles = matchTileTypes.Length - 1;
+			allowFallingTilesCommand.Execute ();
 
-			objectPoolModel.Received (allMatchTiles).AddObjectPoolEntry (Arg.Any<ObjectPoolEntry> ());
-		}*/
+			IEnumerator iEnum = allowFallingTilesCommand.enumerator;
+			iEnum.MoveNext ();
+			iEnum.MoveNext ();
+
+			Assert.AreEqual (matchTileGridModel.movesRemaining, 0);
+		}
+
+		[Test]
+		public void GivenAddListenerForMessage_WhenIEnumeratorMoveNext_ThenMessageBroadcastSuccessful()
+		{
+			Messenger.AddListener(MatchTileGridMessage.CREATE_NEW_TILE, () =>
+			{
+				Assert.Pass();
+			});
+
+			allowFallingTilesCommand.Execute ();
+
+			IEnumerator iEnum = allowFallingTilesCommand.enumerator;
+			iEnum.MoveNext ();
+			iEnum.MoveNext ();
+
+			// If the test is successful then this is not called.
+			Assert.Fail ();
+		}
 	}
 }

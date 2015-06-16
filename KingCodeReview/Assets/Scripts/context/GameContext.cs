@@ -18,8 +18,6 @@ public class Main : IContextRoot
 
 		Resources.UnloadUnusedAssets();
 
-		//FrameRateManager.SetDeviceFrameRate();
-
 		DOTween.Init (true, false);
 				
 		SetupContainer();

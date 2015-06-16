@@ -25,10 +25,6 @@ namespace MatchTileGrid
 				Debug.Log ("No matches, shuffle grid!");
 				Messenger.Broadcast (MatchTileGridMessage.SHUFFLE_GRID);
 			}
-			/*else
-			{
-				Debug.Log ("Matches");
-			}*/
 		}
 
 		private bool CheckMatches()
@@ -44,7 +40,7 @@ namespace MatchTileGrid
 				{
 					Vector2 pos = new Vector2 (x, y);
 					if (matchTiles.ContainsKey(pos))
-					{
+					{						
 						MatchTile matchTile = matchTiles [pos];
 						if (matchTile.canMove)
 						{
@@ -52,7 +48,7 @@ namespace MatchTileGrid
 							matchTileGridModel.ClearHintMatchTiles ();
 
 							if (ValidMatchTileSequence(matchTile, pos))
-							{
+							{						
 								return true;
 							}
 						}	
@@ -115,6 +111,7 @@ namespace MatchTileGrid
 		private int Match(MatchTile currentTile, Vector2 pos, int matchCount)
 		{
 			MatchTile tile = matchTileGridModel.GetMatchTile (pos);
+
 			if (tile != null && 
 				currentTile.type.Equals(tile.type) &&
 				tile.canMove)

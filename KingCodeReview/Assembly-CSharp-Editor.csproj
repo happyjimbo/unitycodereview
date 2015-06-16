@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\matchtiles\controller\commands\AllowFallingTilesCommandTest.cs" />
+     <Compile Include="Assets\Editor\matchtiles\controller\commands\CalculateTilesToRemoveCommandTest.cs" />
+     <Compile Include="Assets\Editor\matchtiles\controller\commands\CheckMovesRemainingCommandTest.cs" />
+     <Compile Include="Assets\Editor\matchtiles\controller\commands\LoadMatchTileGridDataCommandTest.cs" />
+     <Compile Include="Assets\Editor\matchtiles\controller\commands\MatchTileHintCommandTest.cs" />
      <Compile Include="Assets\Editor\objectpool\controller\commands\AddMatchTilesToObjectPoolCommandTest.cs" />
      <Compile Include="Assets\Libraries\NGUI\Examples\Scripts\InventorySystem\Editor\InvDatabaseInspector.cs" />
      <Compile Include="Assets\Libraries\NGUI\Examples\Scripts\InventorySystem\Editor\InvFindItem.cs" />

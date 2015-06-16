@@ -37,6 +37,9 @@ namespace MatchTileGrid
 			matchTileTouchedCommand = commandFactory.Build<MatchTileTouchedCommand> ();
 			Messenger.AddListener <TouchedObject> (TouchMessage.OBJECT_TOUCHED_2D, MatchTileTouched);
 
+			ICommand removeMatchTileHightLightCommand = commandFactory.Build<RemoveMatchTileHightLightCommand> ();
+			Messenger.AddListener (TouchMessage.TOUCH_ENDED, removeMatchTileHightLightCommand.Execute);
+
 			ICommand calculateTilesToRemove = commandFactory.Build<CalculateTilesToRemoveCommand> ();
 			Messenger.AddListener (TouchMessage.TOUCH_ENDED, calculateTilesToRemove.Execute);
 

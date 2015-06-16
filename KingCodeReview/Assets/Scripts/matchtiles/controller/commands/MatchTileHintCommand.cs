@@ -13,9 +13,12 @@ namespace MatchTileGrid
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
 
+		public IEnumerator enumerator { get; private set; }
+
 		public void Execute()
 		{
-			Coroutiner.StartCoroutine (CheckTouch());
+			enumerator = CheckTouch ();
+			Coroutiner.StartCoroutine (enumerator);
 		}
 
 		private IEnumerator CheckTouch()

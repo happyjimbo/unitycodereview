@@ -2,10 +2,6 @@ using UnityEngine;
 using System.Collections;
 using IoC;
 
-/**
- * Detect which opjects have been hit and inform them
- */
-
 namespace Touched
 {
 	public struct TouchedObject
@@ -72,16 +68,6 @@ namespace Touched
 				Messenger.Broadcast(TouchMessage.OBJECT_TOUCHED_2D, touched);
 				return;
 			}	
-
-			// 3d Camera
-			/*ray = Camera.main.ScreenPointToRay(pos);
-			touched = DetectTouch3D (ray);
-			if (!touched.Equals(default(TouchedObject)))
-			{
-				tapObject = touched;
-				Messenger.Broadcast(TouchMessage.OBJECT_TOUCHED_3D, touched);
-				return;
-			}	*/
 		}
 
 		private TouchedObject DetectTouch2D(Ray ray)
@@ -96,18 +82,5 @@ namespace Touched
 			}
 			return touched;
 		}
-
-		/*private TouchedObject DetectTouch3D(Ray ray)
-		{
-			TouchedObject touched = new TouchedObject();
-
-			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit))
-			{			
-				touched.objectHit = hit.transform.gameObject;
-				touched.point = hit.point;
-			}
-			return touched;
-		}*/
 	}
 }
