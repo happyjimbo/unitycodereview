@@ -1,0 +1,67 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: GameRetina.png (2048 x 2048)
+# $TexturePacker:SmartUpdate:226b89389780ab2592e9f2477778aad2:99e30a686f7bd84f01fab774e1ad7d18:ea060dbb2973298093f3768b0e159298$
+#
+
+Blank;383;905;125;125;0.5;0.5
+Direction_Down;383;1032;125;125;0.5;0.5
+Direction_Left;383;1159;125;125;0.5;0.5
+Direction_Right;383;1286;125;125;0.5;0.5
+Direction_Up;383;1413;125;125;0.5;0.5
+Edge;383;1540;125;125;0.5;0.5
+Map_Blank;383;1667;125;125;0.5;0.5
+Map_Corner;383;1794;125;125;0.5;0.5
+Map_Corner_Current;383;1921;125;125;0.5;0.5
+Map_Corner_Entered;256;16;125;125;0.5;0.5
+Map_Crossroads;256;143;125;125;0.5;0.5
+Map_Crossroads_Current;256;270;125;125;0.5;0.5
+Map_Crossroads_Entered;256;397;125;125;0.5;0.5
+Map_DeadEnd;256;524;125;125;0.5;0.5
+Map_DeadEnd_Current;256;651;125;125;0.5;0.5
+Map_DeadEnd_Entered;256;778;125;125;0.5;0.5
+Map_Door_HaveKey;256;905;125;125;0.5;0.5
+Map_Door_Locked;256;1032;125;125;0.5;0.5
+Map_Door_Open;256;1159;125;125;0.5;0.5
+Map_Enemy;256;1286;125;125;0.5;0.5
+Map_Player;256;1413;125;125;0.5;0.5
+Map_Straight;256;1540;125;125;0.5;0.5
+Map_Straight_Current;256;1667;125;125;0.5;0.5
+Map_Straight_Entered;256;1794;125;125;0.5;0.5
+Map_T-Junction;256;1921;125;125;0.5;0.5
+Map_T-Junction_Current;129;16;125;125;0.5;0.5
+Map_T-Junction_Entered;129;143;125;125;0.5;0.5
+MatchToken_A;129;270;125;125;0.5;0.5
+MatchToken_A_Highlight;129;397;125;125;0.5;0.5
+MatchToken_B;129;524;125;125;0.5;0.5
+MatchToken_B_Highlight;129;651;125;125;0.5;0.5
+MatchToken_Blocker_1;129;778;125;125;0.5;0.5
+MatchToken_Blocker_2;129;905;125;125;0.5;0.5
+MatchToken_Blocker_3;129;1032;125;125;0.5;0.5
+MatchToken_C;129;1159;125;125;0.5;0.5
+MatchToken_C_Highlight;129;1286;125;125;0.5;0.5
+MatchToken_D;129;1413;125;125;0.5;0.5
+MatchToken_D_Highlight;129;1540;125;125;0.5;0.5
+MatchToken_E;129;1667;125;125;0.5;0.5
+MatchToken_E_Highlight;129;1794;125;125;0.5;0.5
+MatchToken_F;129;1921;125;125;0.5;0.5
+MatchToken_F_Highlight;2;16;125;125;0.5;0.5
+MatchToken_G;2;143;125;125;0.5;0.5
+MatchToken_G_Highlight;2;270;125;125;0.5;0.5
+MatchToken_Ghost_Default;2;397;125;125;0.5;0.5
+MatchToken_Key;2;524;125;125;0.5;0.5
+MatchToken_Locker_1;2;651;125;125;0.5;0.5
+MatchToken_Locker_2;2;778;125;125;0.5;0.5
+MatchToken_Locker_3;2;905;125;125;0.5;0.5
+MatchToken_Regenerator;2;1032;125;125;0.5;0.5
+MatchToken_Sticker;2;1159;125;125;0.5;0.5
+MatchToken_Trapper;2;1286;125;125;0.5;0.5
+RemainingClearance;2;1413;125;125;0.5;0.5
+Special_Horizontal;2;1540;125;125;0.5;0.5
+Special_Matching;2;1667;125;125;0.5;0.5
+Special_Surrounding;2;1794;125;125;0.5;0.5
+Special_Vertical;2;1921;125;125;0.5;0.5

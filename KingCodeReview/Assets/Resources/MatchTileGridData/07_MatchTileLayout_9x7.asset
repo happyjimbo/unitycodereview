@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c4726a174894ef6bd799b82de70c06, type: 3}
+  m_Name: 07_MatchTileLayout_9x7
+  m_EditorClassIdentifier: 
+  gridSize: {x: 9, y: 7}
+  matchTilesData:
+  - position: {x: 4, y: 5}
+    gameObject: {fileID: 167886, guid: ad9084b9faf58421ea83a1d75d6b086c, type: 2}
+  - position: {x: 6, y: 5}
+    gameObject: {fileID: 199796, guid: 4984d753015414ec68626fb253bda7f1, type: 2}
+  - position: {x: 0, y: 3}
+    gameObject: {fileID: 117722, guid: 02e1590aeb82040d09fc4deea44f5fb5, type: 2}
+  - position: {x: 2, y: 3}
+    gameObject: {fileID: 184112, guid: c397f8863e8974162a1c8c9b05f96223, type: 2}
+  - position: {x: 3, y: 3}
+    gameObject: {fileID: 195212, guid: f755b11d2636f4f7fa9a0aba4b5cc5fc, type: 2}
+  - position: {x: 4, y: 3}
+    gameObject: {fileID: 167886, guid: ad9084b9faf58421ea83a1d75d6b086c, type: 2}
+  - position: {x: 5, y: 3}
+    gameObject: {fileID: 184112, guid: c397f8863e8974162a1c8c9b05f96223, type: 2}
+  - position: {x: 6, y: 3}
+    gameObject: {fileID: 195212, guid: f755b11d2636f4f7fa9a0aba4b5cc5fc, type: 2}
+  - position: {x: 0, y: 2}
+    gameObject: {fileID: 117722, guid: 02e1590aeb82040d09fc4deea44f5fb5, type: 2}
+  - position: {x: 8, y: 2}
+    gameObject: {fileID: 186536, guid: 8b28778e02fd149829f50a6abcd19c0e, type: 2}
+  - position: {x: 0, y: 1}
+    gameObject: {fileID: 117722, guid: 02e1590aeb82040d09fc4deea44f5fb5, type: 2}
+  - position: {x: 2, y: 1}
+    gameObject: {fileID: 178470, guid: cce0a4b01c85749a78ba9601d4a4c585, type: 2}
+  - position: {x: 3, y: 1}
+    gameObject: {fileID: 167474, guid: a6880e5e2aaa0406ea76dfef71062c8f, type: 2}
+  - position: {x: 4, y: 1}
+    gameObject: {fileID: 199784, guid: 6db7ef04ead964a32ab1d5f639484885, type: 2}
+  - position: {x: 5, y: 1}
+    gameObject: {fileID: 167474, guid: a6880e5e2aaa0406ea76dfef71062c8f, type: 2}
+  - position: {x: 6, y: 1}
+    gameObject: {fileID: 178470, guid: cce0a4b01c85749a78ba9601d4a4c585, type: 2}
+  - position: {x: 8, y: 1}
+    gameObject: {fileID: 186536, guid: 8b28778e02fd149829f50a6abcd19c0e, type: 2}
+  - position: {x: 8, y: 0}
+    gameObject: {fileID: 186536, guid: 8b28778e02fd149829f50a6abcd19c0e, type: 2}

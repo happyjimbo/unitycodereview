@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c4726a174894ef6bd799b82de70c06, type: 3}
+  m_Name: 02_MatchTileLayout_9x7
+  m_EditorClassIdentifier: 
+  gridSize: {x: 9, y: 7}
+  matchTilesData:
+  - position: {x: 0, y: 6}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 1, y: 6}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 2, y: 6}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 3, y: 6}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 5, y: 6}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 6, y: 6}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 7, y: 6}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 8, y: 6}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 0, y: 5}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 1, y: 5}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 2, y: 5}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 6, y: 5}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 7, y: 5}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 8, y: 5}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 0, y: 4}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 1, y: 4}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 7, y: 4}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 8, y: 4}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 0, y: 3}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 1, y: 3}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 7, y: 3}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 8, y: 3}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 0, y: 2}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 1, y: 2}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 7, y: 2}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 8, y: 2}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 0, y: 1}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 1, y: 1}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 2, y: 1}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 6, y: 1}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 7, y: 1}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 8, y: 1}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 0, y: 0}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 1, y: 0}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 2, y: 0}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 3, y: 0}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 5, y: 0}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 6, y: 0}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 7, y: 0}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}
+  - position: {x: 8, y: 0}
+    gameObject: {fileID: 141748, guid: 1e7274368f29045baafa2a8c8fcfbd45, type: 2}

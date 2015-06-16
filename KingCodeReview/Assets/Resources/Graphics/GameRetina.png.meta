@@ -1,0 +1,674 @@
+fileFormatVersion: 2
+guid: 1f672b25d797945eaad312d8eed086c1
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MatchToken_A
+    21300002: MatchToken_B
+    21300004: MatchToken_C
+    21300006: MatchToken_D
+    21300008: MatchToken_E
+    21300010: MatchToken_F
+    21300012: MatchToken_G
+    21300014: Blank
+    21300016: Edge
+    21300018: MatchToken_A_Highlight
+    21300020: MatchToken_B_Highlight
+    21300022: MatchToken_C_Highlight
+    21300024: MatchToken_D_Highlight
+    21300026: MatchToken_E_Highlight
+    21300028: MatchToken_F_Highlight
+    21300030: MatchToken_G_Highlight
+    21300032: RemainingClearance
+    21300034: MatchToken_Blocker_1
+    21300036: MatchToken_Blocker_2
+    21300038: MatchToken_Blocker_3
+    21300040: MatchToken_Sticker
+    21300042: Direction_Down
+    21300044: Direction_Left
+    21300046: Direction_Right
+    21300048: Direction_Up
+    21300050: MatchToken_Ghost_Default
+    21300052: Special_Horizontal
+    21300054: Special_Matching
+    21300056: Special_Surrounding
+    21300058: Special_Vertical
+    21300060: MatchToken_Locker_1
+    21300062: MatchToken_Locker_2
+    21300064: MatchToken_Locker_3
+    21300066: Map_Corner
+    21300068: Map_Crossroads
+    21300070: Map_Straight
+    21300072: Map_T-Junction
+    21300074: Map_Blank
+    21300076: MatchToken_Regenerator
+    21300078: MatchToken_Trapper
+    21300080: Map_Enemy
+    21300082: Map_Player
+    21300084: Map_Corner_Current
+    21300086: Map_Corner_Entered
+    21300088: Map_Crossroads_Current
+    21300090: Map_Crossroads_Entered
+    21300092: Map_Door_HaveKey
+    21300094: Map_Door_Locked
+    21300096: Map_Door_Open
+    21300098: Map_Straight_Current
+    21300100: Map_Straight_Entered
+    21300102: Map_T-Junction_Current
+    21300104: Map_T-Junction_Entered
+    21300106: Map_DeadEnd
+    21300108: Map_DeadEnd_Current
+    21300110: Map_DeadEnd_Entered
+    21300112: MatchToken_Key
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Blank
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 905
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Direction_Down
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1032
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Direction_Left
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1159
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Direction_Right
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1286
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Direction_Up
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1413
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Edge
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1540
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Blank
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1667
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Corner
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1794
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Corner_Current
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1921
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Corner_Entered
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 16
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Crossroads
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 143
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Crossroads_Current
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 270
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Crossroads_Entered
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 397
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_DeadEnd
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 524
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_DeadEnd_Current
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 651
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_DeadEnd_Entered
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 778
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Door_HaveKey
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 905
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Door_Locked
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1032
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Door_Open
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1159
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Enemy
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1286
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Player
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1413
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Straight
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1540
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Straight_Current
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1667
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_Straight_Entered
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1794
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_T-Junction
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1921
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_T-Junction_Current
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 16
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Map_T-Junction_Entered
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 143
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_A
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 270
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_A_Highlight
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 397
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_B
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 524
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_B_Highlight
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 651
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Blocker_1
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 778
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Blocker_2
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 905
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Blocker_3
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1032
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_C
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1159
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_C_Highlight
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1286
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_D
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1413
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_D_Highlight
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1540
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_E
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1667
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_E_Highlight
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1794
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_F
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1921
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_F_Highlight
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 16
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_G
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 143
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_G_Highlight
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 270
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Ghost_Default
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 397
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Key
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 524
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Locker_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 651
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Locker_2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 778
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Locker_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 905
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Regenerator
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1032
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Sticker
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1159
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MatchToken_Trapper
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1286
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RemainingClearance
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1413
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Special_Horizontal
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1540
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Special_Matching
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1667
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Special_Surrounding
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1794
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Special_Vertical
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1921
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
