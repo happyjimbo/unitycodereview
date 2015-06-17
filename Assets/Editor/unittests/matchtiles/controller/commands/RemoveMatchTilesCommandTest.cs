@@ -117,11 +117,6 @@ namespace MatchTileGrid
 		[Test]
 		public void GivenOneMatchTileInRemoveTile_WhenExecute_ThenBroadcastRemoveTilesComplete()
 		{
-			Messenger.AddListener (MatchTileGridMessage.REMOVE_TILES_COMPLETE, () => 
-			{
-				Assert.Pass();		
-			});
-
 			MatchTile matchTile = new MatchTile ();
 			matchTile.type = MatchTileType.MatchToken_A;
 			matchTile.canMove = true;
@@ -131,6 +126,7 @@ namespace MatchTileGrid
 
 			RemoveTile removeTile = new RemoveTile ();
 			removeTile.matchTiles = matchTiles;
+
 
 			removeMatchTilesCommand.removeTile = removeTile;
 			removeMatchTilesCommand.Execute ();
@@ -143,11 +139,14 @@ namespace MatchTileGrid
 			loopEnumerator.MoveNext ();
 			loopEnumerator.MoveNext ();
 
+			Messenger.AddListener (MatchTileGridMessage.REMOVE_TILES_COMPLETE, () => 
+			{
+				Assert.Pass();	
+			});
+
 			IEnumerator endEnumerator = removeMatchTilesCommand.endEnumerator;
 			endEnumerator.MoveNext ();
 			endEnumerator.MoveNext ();
-
-			Assert.Fail ();
 		}
 
 	}

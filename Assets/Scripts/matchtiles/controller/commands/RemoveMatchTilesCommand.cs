@@ -17,6 +17,8 @@ namespace MatchTileGrid
 
 		public RemoveTile removeTile { private get; set; }
 
+		// These are unfortunatly needed for our unit tests so that they can
+		// manually walk through the entire IEnumerator methods in order to test.
 		public IEnumerator enumerator { get; private set; }
 		public IEnumerator loopEnumerator { get; private set; }
 		public IEnumerator endEnumerator { get; private set; }
@@ -54,12 +56,12 @@ namespace MatchTileGrid
 				matchTileQueue.RemoveAt (0);
 
 				loopEnumerator = Remove ();
-				Coroutiner.StartCoroutine (enumerator);
+				Coroutiner.StartCoroutine (loopEnumerator);
 			}
 			else
 			{
 				endEnumerator = End ();
-				Coroutiner.StartCoroutine (enumerator);
+				Coroutiner.StartCoroutine (endEnumerator);
 			}
 		}
 
