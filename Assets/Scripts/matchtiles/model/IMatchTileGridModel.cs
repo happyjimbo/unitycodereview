@@ -61,12 +61,6 @@ namespace MatchTileGrid
 
 		bool ValidMoveTouchEnded ();
 
-		void SetMatchTilesNeeded (MatchTileType type, int amount);
-
-		void AddMatchTileCollected (MatchTileType type);
-
-		int GetMatchTilesNeeded (MatchTileType type);
-
 		void AddHintMatchTile (MatchTile tile);
 
 		List<MatchTile> GetHintMatchTiles ();

@@ -39,6 +39,7 @@ namespace MatchTileGrid
 
 			matchTileGridModel.GetMatchTiles ().Returns (matchTilesDic);
 			matchTileGridModel.GetMatchTile (first).Returns (matchTilesDic [first]);
+			// We can't set this as null directly, but using a lambda enables us to..
 			matchTileGridModel.GetMatchTile (second).Returns (a => null);
 
 			positionTilesCommand.Execute ();

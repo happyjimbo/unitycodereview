@@ -55,9 +55,6 @@ namespace MatchTileGrid
 			ICommand shuffleGridCommand = commandFactory.Build<ShuffleGridCommand> ();
 			Messenger.AddListener (MatchTileGridMessage.SHUFFLE_GRID, shuffleGridCommand.Execute);
 
-			ICommand addScoreForTilesCommand = commandFactory.Build<AddScoreForTilesCommand> ();
-			Messenger.AddListener (TouchMessage.TOUCH_ENDED, addScoreForTilesCommand.Execute);
-
 			hideInvalidTilesCommand = commandFactory.Build<HideInvalidTilesCommand> ();
 			Messenger.AddListener <MatchTileType> (MatchTileGridMessage.HIDE_INVALID_TILES, HideInvalidTiles);
 			Messenger.AddListener (TouchMessage.TOUCH_ENDED, MatchTileShowTiles);

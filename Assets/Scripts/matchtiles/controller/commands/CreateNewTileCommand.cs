@@ -15,6 +15,8 @@ namespace MatchTileGrid
 		[Inject]
 		public IMatchTileFactory matchTileFactory { private get; set; }
 
+		public IEnumerator enumerator { get; private set; }
+
 		public void Execute()
 		{
 			int tilesTouched = matchTileGridModel.tilesToReplace;
@@ -22,7 +24,8 @@ namespace MatchTileGrid
 			bool previousAllowTouch = matchTileGridModel.allowTouch;
 			matchTileGridModel.allowTouch = false;
 
-			Coroutiner.StartCoroutine (CreateNewTile (tilesTouched, previousAllowTouch));
+			enumerator = CreateNewTile (tilesTouched, previousAllowTouch);
+			Coroutiner.StartCoroutine (enumerator);
 		} 
 
 		private IEnumerator CreateNewTile(int pos, bool previousAllowTouch)
@@ -48,7 +51,8 @@ namespace MatchTileGrid
 
 			if (createMore)
 			{				
-				Coroutiner.StartCoroutine (CreateNewTile (pos, previousAllowTouch));				
+				enumerator = CreateNewTile (pos, previousAllowTouch);
+				Coroutiner.StartCoroutine (enumerator);				
 			}
 			else
 			{

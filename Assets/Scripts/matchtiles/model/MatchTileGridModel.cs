@@ -222,38 +222,6 @@ namespace MatchTileGrid
 			return false;
 		}
 
-		/****************** Tiles Neeeded ******************/
-
-		private Dictionary<MatchTileType, int> matchTilesCollected = new Dictionary<MatchTileType, int> ();
-		private Dictionary<MatchTileType, int> matchTilesNeeded = new Dictionary<MatchTileType, int> ();
-
-		public void SetMatchTilesNeeded(MatchTileType type, int amount)
-		{
-			matchTilesNeeded [type] = amount;
-		}
-
-		public void AddMatchTileCollected(MatchTileType type)
-		{
-			if (!matchTilesCollected.ContainsKey(type))
-			{
-				matchTilesCollected [type] = 0;
-			}
-
-			matchTilesCollected [type]++;
-
-			Messenger.Broadcast (MatchTileGridMessage.MATCH_TILE_COLLECTED, type);
-		}
-
-		public int GetMatchTilesNeeded(MatchTileType type)
-		{
-			if (!matchTilesCollected.ContainsKey(type))
-			{
-				matchTilesCollected [type] = 0;
-			}
-
-			return matchTilesNeeded [type] - matchTilesCollected [type];
-		}
-
 		/****************** Hint ******************/
 
 		private List<MatchTile> hintTiles = new List<MatchTile>();
