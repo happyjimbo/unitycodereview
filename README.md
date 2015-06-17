@@ -14,7 +14,7 @@ To run the Unit Tests you need to select 'Unity Test Tools' from the menubar and
 
 ### Code guidelines ###
 
-To view the Unit Tests, look in the 'Editor' -> 'unittests' directory in the 'Project' panel. The unit tests live here so that 
+To view the Unit Tests, look in the 'Editor' -> 'UnitTests' directory in the 'Project' panel. The unit tests live here so that 
 they're not compiled into a built version of our game and instead just live inside the editor environment.
 
 To view where life begins, go to the 'Hierarchy' view, select the GameContext GameObject. In the Inspector you'll see that we have the 'GameContext' script attached - select this script to find our IoC Context which is where life begins for the game.
