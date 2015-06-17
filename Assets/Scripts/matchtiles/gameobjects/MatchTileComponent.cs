@@ -1,45 +1,48 @@
 ﻿using System;
 using UnityEngine;
 
-public class MatchTileComponent : MonoBehaviour
+namespace MatchTileGrid
 {
-	public GameObject tile;
-	public GameObject highlight;
-
-	public void OnEnable()
+	public class MatchTileComponent : MonoBehaviour, IMatchTileComponent
 	{
-		Tile ();
-	}
+		public GameObject tile;
+		public GameObject highlight;
 
-	public void Tile()
-	{
-		tile.SetActive (true);
-		if (highlight != null)
+		public void OnEnable()
 		{
-			highlight.SetActive (false);		
+			Tile ();
 		}
-	}
 
-	public void HighLight()
-	{
-		tile.SetActive (false);
-		if (highlight != null)
+		public void Tile()
 		{
-			highlight.SetActive (true);		
+			tile.SetActive (true);
+			if (highlight != null)
+			{
+				highlight.SetActive (false);		
+			}
 		}
-	}
 
-	public void Show()
-	{
-		SpriteRenderer spriteRenderer = tile.GetComponent<SpriteRenderer> ();
-		Color currentColor = spriteRenderer.color;
-		spriteRenderer.color = new Color (currentColor.r, currentColor.g, currentColor.b, 1);
-	}
+		public void HighLight()
+		{
+			tile.SetActive (false);
+			if (highlight != null)
+			{
+				highlight.SetActive (true);		
+			}
+		}
 
-	public void Hide()
-	{
-		SpriteRenderer spriteRenderer = tile.GetComponent<SpriteRenderer> ();
-		Color currentColor = spriteRenderer.color;
-		spriteRenderer.color = new Color (currentColor.r, currentColor.g, currentColor.b, 0.5f);
+		public void Show()
+		{
+			SpriteRenderer spriteRenderer = tile.GetComponent<SpriteRenderer> ();
+			Color currentColor = spriteRenderer.color;
+			spriteRenderer.color = new Color (currentColor.r, currentColor.g, currentColor.b, 1);
+		}
+
+		public void Hide()
+		{
+			SpriteRenderer spriteRenderer = tile.GetComponent<SpriteRenderer> ();
+			Color currentColor = spriteRenderer.color;
+			spriteRenderer.color = new Color (currentColor.r, currentColor.g, currentColor.b, 0.5f);
+		}
 	}
 }

@@ -39,20 +39,29 @@ namespace MatchTileGrid
 
 				Messenger.Broadcast (MatchTileGridMessage.HIDE_INVALID_TILES, tile.type);
 
-				MatchTileComponent matchTileComponent = tile.tileObject.GetComponent<MatchTileComponent> ();
-				if (matchTileComponent != null)
-				{
-					matchTileComponent.HighLight ();
-				}
-
-				float punch = 0.1f;
-				Vector3 punchSize = new Vector3 (punch, punch, punch);
-				tile.tileObject.transform.DOPunchScale (punchSize, 0.5f, 3);
+				HighLight (tile);
+				Punch (tile.tileObject);
 
 				return;
 			}
 
 			PreviousTileSelected (tilePos);
+		}
+
+		private void HighLight(MatchTile tile)
+		{
+			IMatchTileComponent matchTileComponent = matchTileGridModel.GetMatchTileComponent(tile);
+			if (matchTileComponent != null)
+			{
+				matchTileComponent.HighLight ();
+			}
+		}
+
+		private void Punch(GameObject tileObject)
+		{
+			float punch = 0.1f;
+			Vector3 punchSize = new Vector3 (punch, punch, punch);
+			tileObject.transform.DOPunchScale (punchSize, 0.5f, 3);
 		}
 
 		private void PreviousTileSelected(Vector2 tilePos)

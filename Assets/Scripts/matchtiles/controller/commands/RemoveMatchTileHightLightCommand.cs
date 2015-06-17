@@ -25,7 +25,7 @@ namespace MatchTileGrid
 
 				if (tile.tileObject != null)
 				{
-					MatchTileComponent matchTileComponent = tile.tileObject.GetComponent<MatchTileComponent> ();
+					IMatchTileComponent matchTileComponent = matchTileGridModel.GetMatchTileComponent(tile);
 					if (matchTileComponent != null)
 					{
 						matchTileComponent.Tile ();

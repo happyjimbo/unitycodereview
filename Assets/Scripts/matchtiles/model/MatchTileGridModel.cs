@@ -126,13 +126,17 @@ namespace MatchTileGrid
 			return MatchTileType.Null;
 		}
 
+		public IMatchTileComponent GetMatchTileComponent(MatchTile tile)
+		{
+			return tile.tileObject.GetComponent (typeof(IMatchTileComponent)) as IMatchTileComponent;
+		}
+
 		/****************** tilesTouched ******************/
 
 		public float lastTouchedTimestamp { get; set; }
-
-		private List<MatchTile> tilesTouched = new List<MatchTile>();
 		public MatchTileType selectedMatchTileType { get; private set; }
 
+		private List<MatchTile> tilesTouched = new List<MatchTile>();
 		private Vector2 lastMatchTileAddedPos;
 
 		public void AddTileTouched(Vector2 pos, MatchTile matchTile)

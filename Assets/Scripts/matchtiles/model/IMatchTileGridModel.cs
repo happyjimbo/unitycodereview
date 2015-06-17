@@ -31,17 +31,15 @@ namespace MatchTileGrid
 		void MoveTile (Vector2 currentPosition, Vector2 newPosition);
 		List<MatchTile> GetAllMatchTilesNotOfType (MatchTileType type);
 		MatchTileType GetMatchTileType (string str);
+		IMatchTileComponent GetMatchTileComponent (MatchTile tile);
 
 		float lastTouchedTimestamp { get; set; }
-
 		MatchTileType selectedMatchTileType { get; }
-
 		void AddTileTouched (Vector2 pos, MatchTile matchTile);
 		List<MatchTile> GetTilesTouched ();
 		void RemoveTileTouched (MatchTile tile);
 		void ClearTilesTouched ();
 		bool CanTouchTile (MatchTile matchTile);
-
 		bool ValidMoveTouchEnded ();
 
 		void AddHintMatchTile (MatchTile tile);

@@ -38,7 +38,7 @@ namespace MatchTileGrid
 			for (int i = 0; i < matchTiles.Count; i++)
 			{
 				MatchTile tile = matchTiles [i];
-				MatchTileComponent matchTileComponent = tile.tileObject.GetComponent<MatchTileComponent> ();
+				IMatchTileComponent matchTileComponent = matchTileGridModel.GetMatchTileComponent(tile);
 				if (matchTileComponent != null)
 				{
 					matchTileComponent.Hide ();
@@ -52,7 +52,7 @@ namespace MatchTileGrid
 			foreach(KeyValuePair<Vector2, MatchTile> entry in matchTiles)
 			{
 				MatchTile tile = entry.Value;
-				MatchTileComponent matchTileComponent = tile.tileObject.GetComponent<MatchTileComponent> ();
+				IMatchTileComponent matchTileComponent = matchTileGridModel.GetMatchTileComponent(tile);
 				if (matchTileComponent != null)
 				{
 					matchTileComponent.Show ();

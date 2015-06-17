@@ -43,7 +43,7 @@ namespace MatchTileGrid
 			MatchTile matchTile = new MatchTile ();
 			matchTile.canTouch = true;
 			matchTile.position = Vector2.zero;
-			matchTile.tileObject = new GameObject ();
+			matchTile.tileObject = new GameObject();
 
 			matchTileGridModel.GetMatchTile (Vector2.zero).Returns (matchTile);
 			matchTileGridModel.CanTouchTile (matchTile).Returns (true);
@@ -54,12 +54,79 @@ namespace MatchTileGrid
 		}
 
 		[Test]
+		public void GivenCanTouchTile_WhenTouchObjectExecute_ThenHighLightMatchTileComponent()
+		{
+			matchTileGridModel.allowTouch = true;
+
+			IMatchTileComponent matchTileComponenet = Substitute.For<IMatchTileComponent> ();
+			matchTileGridModel.GetMatchTileComponent (Arg.Any<MatchTile>()).Returns (matchTileComponenet);
+
+			MatchTile matchTile = new MatchTile ();
+			matchTile.canTouch = true;
+			matchTile.position = Vector2.zero;
+			matchTile.tileObject = new GameObject();;
+
+			matchTileGridModel.GetMatchTile (Vector2.zero).Returns (matchTile);
+			matchTileGridModel.CanTouchTile (matchTile).Returns (true);
+
+			matchTileTouchedCommand.Execute ();
+
+			matchTileComponenet.Received ().HighLight ();
+		}
+
+		[Test]
+		public void GivenCanTouchTile_WhenTouchObjectExecute_ThenBroadcastTileSelected()
+		{
+			Messenger.AddListener <MatchTileType> (MatchTileGridMessage.TILE_SELECTED, (MatchTileType type) =>
+			{
+				Assert.Pass();
+			});
+
+			matchTileGridModel.allowTouch = true;
+
+			MatchTile matchTile = new MatchTile ();
+			matchTile.canTouch = true;
+			matchTile.position = Vector2.zero;
+			matchTile.tileObject = new GameObject();;
+
+			matchTileGridModel.GetMatchTile (Vector2.zero).Returns (matchTile);
+			matchTileGridModel.CanTouchTile (matchTile).Returns (true);
+
+			matchTileTouchedCommand.Execute ();
+
+			Assert.Fail ();
+		}
+
+		[Test]
+		public void GivenCanTouchTile_WhenTouchObjectExecute_ThenBroadcastHideInvalidTiles()
+		{
+			Messenger.AddListener <MatchTileType> (MatchTileGridMessage.HIDE_INVALID_TILES, (MatchTileType type) =>
+			{
+				Assert.Pass();
+			});
+
+			matchTileGridModel.allowTouch = true;
+
+			MatchTile matchTile = new MatchTile ();
+			matchTile.canTouch = true;
+			matchTile.position = Vector2.zero;
+			matchTile.tileObject = new GameObject();;
+
+			matchTileGridModel.GetMatchTile (Vector2.zero).Returns (matchTile);
+			matchTileGridModel.CanTouchTile (matchTile).Returns (true);
+
+			matchTileTouchedCommand.Execute ();
+
+			Assert.Fail ();
+		}
+
+		[Test]
 		public void GivenMatchTilesTouchedAddedToModel_WhenTouchObjectExecute_ThenPreviousTileSelected()
 		{
 			MatchTile matchTile = new MatchTile ();
 			matchTile.canTouch = true;
 			matchTile.position = Vector2.zero;
-			matchTile.tileObject = new GameObject ();
+			matchTile.tileObject = new GameObject();;
 
 			List<MatchTile> matchTiles = new List<MatchTile>();
 			matchTiles.Add (matchTile);
@@ -74,24 +141,5 @@ namespace MatchTileGrid
 			matchTileGridModel.Received ().RemoveTileTouched (Arg.Any<MatchTile> ());
 		}
 
-		/*[Test]
-		public void GivenMatchTileSlotIsNotEmpty_WhenExecute_ThenBroadcastCheckMovesRemaining()
-		{
-			Messenger.AddListener(MatchTileGridMessage.CHECK_MOVES_REMAINING, () =>
-				{
-					Assert.Pass();
-				});
-
-			matchTileGridModel.gridSize = new Vector2 (1, 1);
-			matchTileGridModel.GetMatchTile (new Vector2(0, 0)).Returns (new MatchTile());
-
-			matchTileTouchedCommand.Execute ();
-
-			IEnumerator iEnum = matchTileTouchedCommand.enumerator;
-			iEnum.MoveNext ();
-			iEnum.MoveNext ();
-
-			Assert.Fail ();
-		}*/
 	}
 }
