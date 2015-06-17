@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using IoC;
@@ -10,63 +11,30 @@ namespace Touched
 	    public Vector3 point;
 	}
 
-	public class TouchController : ITickable
+	public class TouchController : ITickable, IInitialize, IDisposable
 	{	
-		private TouchedObject tapObject;
+		[Inject]
+		public ITouchService touchService { private get; set; }
+
+		public void OnInject()
+		{
+			touchService.calculateTouch += CalculateTouch;
+		}
 
 		public void Tick(float delta)
-		{				
-			TouchSelect ();			
-						
-			#if UNITY_EDITOR
-			MouseSelect();
-			#endif
-		}
-
-		private void TouchSelect()
-		{
-			if (Input.touchCount > 0)
-			{
-				Touch touch = Input.GetTouch(0);
-				CalculateTouch (touch.position);
-
-				if (touch.phase == TouchPhase.Ended)
-				{
-					Messenger.Broadcast(TouchMessage.TOUCH_ENDED);
-					Messenger.Broadcast(TouchMessage.TAP_OBJECT, tapObject);
-				}
-			}
-		}
-
-		private void MouseSelect()
-		{		
-			if (Input.GetKey (KeyCode.Mouse0))
-			{
-				CalculateTouch (Input.mousePosition);
-			}
-
-			if (Input.GetMouseButtonUp (0)) 
-			{
-				Messenger.Broadcast(TouchMessage.TOUCH_ENDED);
-				Messenger.Broadcast(TouchMessage.TAP_OBJECT, tapObject);
-			}
+		{					
+			touchService.CheckForTouch ();
 		}
 
 		private void CalculateTouch(Vector3 pos)
 		{
-			TouchedObject touched = default(TouchedObject);
-			Ray ray;
-
-			// 2d Camera
-			//Camera camera = cameraModel.game2DCamera.GetComponent<Camera> ();
 			Camera camera = Camera.main.camera;
-			ray = camera.ScreenPointToRay(pos);
-			touched = DetectTouch2D (ray);
+			Ray ray = camera.ScreenPointToRay(pos);
+			TouchedObject touched = DetectTouch2D (ray);
+
 			if (!touched.Equals(default(TouchedObject)))
 			{
-				tapObject = touched;
 				Messenger.Broadcast(TouchMessage.OBJECT_TOUCHED_2D, touched);
-				return;
 			}	
 		}
 
@@ -81,6 +49,11 @@ namespace Touched
 				touched.point = hit2d.point;
 			}
 			return touched;
+		}
+
+		public void Dispose()
+		{
+			touchService.calculateTouch -= CalculateTouch;
 		}
 	}
 }

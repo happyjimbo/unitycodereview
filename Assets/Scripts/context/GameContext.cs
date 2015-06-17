@@ -43,14 +43,13 @@ public class Main : IContextRoot
 	
 	private void SetUpServices()
 	{		
-		#if UNITY_IPHONE
-		#endif
-		
-		#if UNITY_ANDROID				
+		#if UNITY_EDITOR
+		container.Bind<ITouchService> ().AsSingle<TouchMouseService>();
 		#endif
 
-        #if UNITY_WP8
-        #endif
+		#if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8
+		container.Bind<ITouchService> ().AsSingle<TouchScreenService>();
+		#endif
 	}
 
 	private void SetUpModels()
@@ -87,6 +86,7 @@ public class Main : IContextRoot
 	
 	private void BuildServices()
 	{
+		container.Build<ITouchService> ();
 	}
 
 	private void BuildPresentations()
