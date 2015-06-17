@@ -10,7 +10,6 @@ namespace MatchTileGrid
 		public const string SHUFFLE_GRID = "MATCH_TILE_SHUFFLE_GRID";
 		public const string MATCH_TILE_COLLECTED = "MATCH_TILE_COLLECTED";
 		public const string HIDE_INVALID_TILES = "HIDE_INVALID_TILES";
-		public const string MATCH_SCORE_ADDED = "MATCH_SCORE_ADDED";
 
 		public const string TILE_SELECTED = "TILE_SELECTED";
 

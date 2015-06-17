@@ -37,8 +37,6 @@ namespace MatchTileGrid
 
 				matchTileGridModel.AddTileTouched (tilePos, tile);
 
-				CalculateScore (tile.type, true);
-
 				Messenger.Broadcast (MatchTileGridMessage.HIDE_INVALID_TILES, tile.type);
 
 				MatchTileComponent matchTileComponent = tile.tileObject.GetComponent<MatchTileComponent> ();
@@ -57,20 +55,6 @@ namespace MatchTileGrid
 			PreviousTileSelected (tilePos);
 		}
 
-		private void CalculateScore(MatchTileType type, bool addScore)
-		{
-			if (addScore)
-			{
-				matchTileGridModel.score += matchTileGridModel.ScoreValueOfMatchTile (type);
-			}
-			else
-			{
-				matchTileGridModel.score -= matchTileGridModel.ScoreValueOfMatchTile (type);	
-			}
-
-			Messenger.Broadcast (MatchTileGridMessage.MATCH_SCORE_ADDED);
-		}
-
 		private void PreviousTileSelected(Vector2 tilePos)
 		{
 			List<MatchTile> matchTiles = matchTileGridModel.GetTilesTouched ();
@@ -82,8 +66,6 @@ namespace MatchTileGrid
 				{
 					MatchTile lastTileAdded = matchTiles [matchTiles.Count - 1];
 					matchTileGridModel.RemoveTileTouched (lastTileAdded);
-
-					CalculateScore (lastTileAdded.type, false);
 
 					MatchTile previousTileTouched = matchTileGridModel.GetMatchTile (lastTileAdded.position);
 					MatchTileComponent matchTileComponent = previousTileTouched.tileObject.GetComponent<MatchTileComponent> ();

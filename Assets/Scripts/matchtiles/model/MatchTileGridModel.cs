@@ -52,8 +52,6 @@ namespace MatchTileGrid
 			set { _allowTouch = value; }
 		}
 
-		public float score { get; set;}
-
 		/****************** matchTileGrid ******************/
 
 		public MatchTilesData matchTilesData { get; set; }
@@ -126,24 +124,6 @@ namespace MatchTileGrid
 				}
 			}
 			return MatchTileType.Null;
-		}
-
-		public int ScoreValueOfMatchTile(MatchTileType type)
-		{
-			switch (type)
-			{
-				case MatchTileType.MatchToken_A:
-				case MatchTileType.MatchToken_B:
-				case MatchTileType.MatchToken_C:
-				case MatchTileType.MatchToken_D:
-				case MatchTileType.MatchToken_E:
-				case MatchTileType.MatchToken_F:
-				case MatchTileType.MatchToken_G:
-					return 5;
-
-				default:
-					return 0;
-			}
 		}
 
 		/****************** tilesTouched ******************/
