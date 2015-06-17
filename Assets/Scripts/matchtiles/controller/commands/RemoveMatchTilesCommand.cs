@@ -17,8 +17,11 @@ namespace MatchTileGrid
 
 		public RemoveTile removeTile { private get; set; }
 
-		private List<RemoveTile> matchTileQueue = new List<RemoveTile>();
+		public IEnumerator enumerator { get; private set; }
+		public IEnumerator loopEnumerator { get; private set; }
+		public IEnumerator endEnumerator { get; private set; }
 
+		private List<RemoveTile> matchTileQueue = new List<RemoveTile>();
 		private int tilesToReplace = 0;
 
 		public void Execute()
@@ -28,7 +31,9 @@ namespace MatchTileGrid
 			if (matchTileQueue.Count == 1)
 			{
 				matchTileGridModel.pauseTilesFalling = true;
-				Coroutiner.StartCoroutine (Remove ());
+
+				enumerator = Remove ();
+				Coroutiner.StartCoroutine (enumerator);
 			}
 		}
 
@@ -48,11 +53,13 @@ namespace MatchTileGrid
 
 				matchTileQueue.RemoveAt (0);
 
-				Coroutiner.StartCoroutine (Remove ());
+				loopEnumerator = Remove ();
+				Coroutiner.StartCoroutine (enumerator);
 			}
 			else
 			{
-				Coroutiner.StartCoroutine (End ());
+				endEnumerator = End ();
+				Coroutiner.StartCoroutine (enumerator);
 			}
 		}
 
