@@ -15,13 +15,13 @@ To run the Unit Tests you need to select 'Unity Test Tools' from the menubar and
 ### Code guidelines ###
 
 To view the Unit Tests, look in the 'Editor' -> 'UnitTests' directory in the 'Project' panel. The unit tests live here so that 
-they're not compiled into a built version of our game and instead just live inside the editor environment.
+they're not compiled into a built version of the game and instead just live inside the editor environment.
 
-To view where life begins, go to the 'Hierarchy' view, select the GameContext GameObject. In the Inspector you'll see that we have the 'GameContext' script attached - select this script to find our IoC Context which is where life begins for the game.
+To view where life begins, go to the 'Hierarchy' view, select the GameContext GameObject. In the Inspector you'll find the 'GameContext' script attached - select this script to find our IoC Context which is where life begins for the game.
 
 ### What is missing? ###
 
-Please note that there is no UI in this code example, this is due to the project originally using NGUI 3 (more advanced UI system than the recently released 'New UI' by Unity), which is paid for software and needs a license - of which I cannot guarantee that you the reader (or organisation) has. Please note that I'm a fan of the Presentation Model (http://martinfowler.com/eaaDev/PresentationModel.html), which enables a separation of concern over and prevents our UI from directly interacting with system code (and visa versa) and is fantastic for creating unit tests without any mocking of view objects involved.
+Please note that there is no UI in this code example, this is due to the project originally using NGUI 3 (more advanced UI system than the recently released 'New UI' by Unity), which is paid for software and needs a license - of which I cannot guarantee that the reader (or organisation) has. Please note that I'm a fan of the Presentation Model (http://martinfowler.com/eaaDev/PresentationModel.html), which enables a separation of concern over and prevents our UI from directly interacting with system code (and visa versa) and is fantastic for creating unit tests without any mocking of view objects involved.
 
 ### Who do I talk to? ###
 
