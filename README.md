@@ -10,7 +10,7 @@ This project is designed for the purpose of a code review.
 
 To play the game simply open the project in Unity and select play.
 
-To run the Unit Tests you need to select 'Unity Test Tools' from the menubar and then select 'Unit Test Runner'. This will pop open a new UI where you can run the Unit Tests from within Unity. I would advise 'docking' this UI as a tab so that you can alway easily jump to it to run your tests. To run the tests, use the 'Play' button in the Unity Test Runner, this will change the scene to run the tests in order to make sure that we don't accidentally pollute our project hierarchy.
+To run the Unit Tests you need to select 'Unity Test Tools' from the menubar and then select 'Unit Test Runner'. This will pop open a new UI where you can run the Unit Tests from within Unity. I would advise 'docking' this UI as a tab so that you can easily jump access the test runner. To run the tests, use the 'Play' icon button in the Unity Test Runner. Please note: this is set to run the tests on a new scene in order to prevent the possibility of polluting the project hierarchy.
 
 ### Code guidelines ###
 
