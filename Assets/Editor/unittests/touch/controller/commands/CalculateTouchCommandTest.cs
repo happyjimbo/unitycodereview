@@ -8,7 +8,7 @@ using Touched;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
-namespace MatchTileGrid
+namespace Touched
 {
 	[TestFixture]
 	internal class CalculateTouchCommandTest
