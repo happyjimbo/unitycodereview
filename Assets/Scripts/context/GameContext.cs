@@ -38,7 +38,7 @@ public class Main : IContextRoot
 	{
 		BindServices();
 		BindModels();
-		BindPresentations();
+		//BindPresentations();
 		BindControllers();
 		BindFactories();
 	}
@@ -58,9 +58,9 @@ public class Main : IContextRoot
 		container.Bind<IObjectPoolModel>().AsSingle<ObjectPoolModel>();
 	}
 
-	private void BindPresentations()
+	/*private void BindPresentations()
 	{		
-	}
+	}*/
 
 	private void BindControllers()
 	{
@@ -79,7 +79,7 @@ public class Main : IContextRoot
 		container.Build<ICommandFactory>();
 
 		BuildServices();
-		BuildPresentations();
+		//BuildPresentations();
 		BuildControllers();
 		BuildFactory();
 	}
@@ -89,9 +89,9 @@ public class Main : IContextRoot
 		container.Build<ITouchService> ();
 	}
 
-	private void BuildPresentations()
+	/*private void BuildPresentations()
 	{	
-	}
+	}*/
 
 	private void BuildControllers()
 	{			
