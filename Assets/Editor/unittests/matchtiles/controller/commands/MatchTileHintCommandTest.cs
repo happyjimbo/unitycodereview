@@ -25,11 +25,15 @@ namespace MatchTileGrid
 		}
 
 		[Test]
-		public void GivenGetHintMatchTilesReturnsList_WhenExecuteDisplayHint_ThenGetHintMatchTiles()
+		public void GivenGetHintMatchTilesReturnsList_WhenExecuteDisplayHint_ThenMatchTileComponentHint()
 		{
 			List<MatchTile> hintMatchTiles = new List<MatchTile> ();
+			hintMatchTiles.Add (new MatchTile ());
 
 			matchTileGridModel.GetHintMatchTiles ().Returns (hintMatchTiles);
+
+			IMatchTileComponent matchTileComponenet = Substitute.For<IMatchTileComponent> ();
+			matchTileGridModel.GetMatchTileComponent (Arg.Any<MatchTile>()).Returns (matchTileComponenet);
 
 			matchTileGridModel.lastTouchedTimestamp = Time.time - 10;
 			matchTileHintCommand.Execute ();
@@ -38,7 +42,7 @@ namespace MatchTileGrid
 			iEnum.MoveNext ();
 			iEnum.MoveNext ();
 
-			matchTileGridModel.Received ().GetHintMatchTiles ();
+			matchTileComponenet.Received ().Hint (Arg.Any<int>());
 		}
 	}
 }

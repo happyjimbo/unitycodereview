@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using DG.Tweening;
 
 namespace MatchTileGrid
 {
@@ -43,6 +44,13 @@ namespace MatchTileGrid
 			SpriteRenderer spriteRenderer = tile.GetComponent<SpriteRenderer> ();
 			Color currentColor = spriteRenderer.color;
 			spriteRenderer.color = new Color (currentColor.r, currentColor.g, currentColor.b, 0.5f);
+		}
+
+		public void Hint(int delay)
+		{
+			float punch = 0.1f;
+			Vector3 punchSize = new Vector3 (punch, punch, punch);
+			transform.DOPunchScale (punchSize, 1, 1).SetDelay (delay);	
 		}
 	}
 }

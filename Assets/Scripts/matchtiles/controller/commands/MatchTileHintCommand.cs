@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using IoC;
 using Command;
-using DG.Tweening;
 
 namespace MatchTileGrid
 {
@@ -36,14 +35,13 @@ namespace MatchTileGrid
 
 		private void DisplayHint ()
 		{
-			float punch = 0.1f;
-			Vector3 punchSize = new Vector3 (punch, punch, punch);
-
 			List<MatchTile> hintMatchTiles = matchTileGridModel.GetHintMatchTiles ();
 			for (int i = 0; i < hintMatchTiles.Count; i++)
 			{
 				MatchTile tile = hintMatchTiles [i];
-				tile.tileObject.transform.DOPunchScale (punchSize, 1, 1).SetDelay (i);
+
+				IMatchTileComponent matchTileComponent = matchTileGridModel.GetMatchTileComponent (tile);
+				matchTileComponent.Hint (i);
 			}
 		}
 	}

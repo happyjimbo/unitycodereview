@@ -3,15 +3,13 @@ using UnityEngine;
 
 namespace Touched
 {
-	public class TouchMouseService : ITouchService
+	public class MouseService : ITouchService
 	{
-		public Action<Vector3> calculateTouch { get; set; }
-
 		public void CheckForTouch()
 		{
 			if (Input.GetKey (KeyCode.Mouse0))
 			{
-				calculateTouch (Input.mousePosition);
+				Messenger.Broadcast(TouchMessage.CALCULATE_TOUCH, Input.mousePosition);
 			}
 
 			if (Input.GetMouseButtonUp (0)) 

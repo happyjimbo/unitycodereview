@@ -21,60 +21,60 @@ public class Main : IContextRoot
 		DOTween.Init (true, false);
 				
 		SetupContainer();
-		StartGame();
+		CreateBindings ();
+		Build();
 	}
 	
 	private void SetupContainer()
 	{
 		container = new UnityContainer();
 
-		// Set up the tick engine
 		container.Bind<TickEngine>().AsSingle();
 		tickEngine = container.Build<TickEngine>();
 
 		container.Bind<ICommandFactory>().AsSingle<CommandFactory>();
-		
-		SetUpServices();
-		SetUpModels();
-		SetUpPresentations();
-		SetUpControllers();
-		SetUpFactory();
 	}
-	
-	private void SetUpServices()
-	{		
+	private void CreateBindings()
+	{
+		BindServices();
+		BindModels();
+		BindPresentations();
+		BindControllers();
+		BindFactories();
+	}
+
+	private void BindServices()
+	{	
 		#if UNITY_EDITOR
-		container.Bind<ITouchService> ().AsSingle<TouchMouseService>();
-		#endif
-
-		#if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8
-		container.Bind<ITouchService> ().AsSingle<TouchScreenService>();
+			container.Bind<ITouchService> ().AsSingle<MouseService>();
+		#elif UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8
+			container.Bind<ITouchService> ().AsSingle<TouchScreenService>();
 		#endif
 	}
 
-	private void SetUpModels()
+	private void BindModels()
 	{	
 		container.Bind<IMatchTileGridModel> ().AsSingle <MatchTileGridModel>();
 		container.Bind<IObjectPoolModel>().AsSingle<ObjectPoolModel>();
 	}
 
-	private void SetUpPresentations()
+	private void BindPresentations()
 	{		
 	}
 
-	private void SetUpControllers()
+	private void BindControllers()
 	{
 		container.Bind<MatchTileGridController> ().AsSingle ();
 		container.Bind<TouchController> ().AsSingle ();
         container.Bind<GameObjectPoolController>().AsSingle();
 	}
 
-	private void SetUpFactory()
+	private void BindFactories()
 	{
 		container.Bind<IMatchTileFactory> ().AsSingle <MatchTileFactory>();
 	}
 
-	private void StartGame()
+	private void Build()
 	{			
 		container.Build<ICommandFactory>();
 

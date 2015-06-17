@@ -9,5 +9,6 @@ namespace MatchTileGrid
 		void HighLight();
 		void Show();
 		void Hide();
+		void Hint(int delay);
 	}
 }
