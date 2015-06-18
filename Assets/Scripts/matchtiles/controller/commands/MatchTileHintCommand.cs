@@ -12,6 +12,9 @@ namespace MatchTileGrid
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
 
+		// The public accessable IEnumerator is unfortunatly needed for our 
+		// unit tests so that they can manually walk through the entire 
+		// IEnumerator method in order to test code that's executed after the yeild.
 		public IEnumerator enumerator { get; private set; }
 
 		public void Execute()

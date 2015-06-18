@@ -15,15 +15,16 @@ namespace MatchTileGrid
 		public IEventDispatcher eventDispatcher { private get; set; }
 
 		public void Execute()
-		{
-			MatchTilesData layout = matchTileGridModel.matchTilesData;
-			CreateGameHolder(layout);
+		{			
+			CreateGameHolder();
 
 			eventDispatcher.Broadcast (MatchTileGridMessage.GRID_HOLDER_CREATED);
 		}
 
-		private void CreateGameHolder(MatchTilesData layout)
+		private void CreateGameHolder()
 		{
+			MatchTilesData layout = matchTileGridModel.matchTilesData;
+
 			GameObject gameHolder = new GameObject ();
 			gameHolder.name = matchTileGridModel.gameHolderName;
 			gameHolder.transform.parent = matchTileGridModel.gridHolder.transform;
