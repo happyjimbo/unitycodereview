@@ -23,6 +23,10 @@ To view where life begins, go to the 'Hierarchy' view, select the GameContext Ga
 
 Please note that there is no UI in this code example, this is due to the project originally using NGUI 3 (more advanced UI system than the recently released 'New UI' by Unity), which is paid for software and needs a license - of which I cannot guarantee that the reader (or organisation) has. Please note that I'm a fan of the Presentation Model (http://martinfowler.com/eaaDev/PresentationModel.html), which enables a separation of concern over and prevents our UI from directly interacting with system code (and visa versa) and is fantastic for creating unit tests without any mocking of view objects involved.
 
+### How to Play? ###
+
+Just simply select a tile and with your finger held down mouse/device select a matching tile that is in any of the 8 grid spaces next to the tile that you've currently selected. You need a minimum of 3 to make a successful match.
+
 ### Who do I talk to? ###
 
 Email James Woodward at: james.ejw@gmail.com
