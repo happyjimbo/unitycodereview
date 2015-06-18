@@ -2,6 +2,7 @@
 using UnityEngine;
 using IoC;
 using Command;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -9,6 +10,9 @@ namespace MatchTileGrid
 	{
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
+
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
 
 		public IEnumerator enumerator { get; private set; }
 
@@ -24,7 +28,7 @@ namespace MatchTileGrid
 
 			UpdateMoves ();
 
-			Messenger.Broadcast (MatchTileGridMessage.CREATE_NEW_TILE);
+			eventDispatcher.Broadcast (MatchTileGridMessage.CREATE_NEW_TILE);
 		}
 
 		private void UpdateMoves()

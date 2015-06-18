@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
+using EventDispatcher;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -14,16 +15,19 @@ namespace MatchTileGrid
 	{
 		private AllowFallingTilesCommand allowFallingTilesCommand;
 		private IMatchTileGridModel matchTileGridModel;
+		private IEventDispatcher eventDispatcher;
 
 		[SetUp]
 		public void SetUp()
 		{
 			matchTileGridModel = Substitute.For<IMatchTileGridModel>();
+			eventDispatcher = Substitute.For<IEventDispatcher> ();
 
 			allowFallingTilesCommand = new AllowFallingTilesCommand ();
 			allowFallingTilesCommand.matchTileGridModel = matchTileGridModel;
+			allowFallingTilesCommand.eventDispatcher = eventDispatcher;
 
-			Messenger.CleanAndDestroy();
+			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]
@@ -57,19 +61,13 @@ namespace MatchTileGrid
 		[Test]
 		public void GivenAddListenerForMessage_WhenIEnumeratorMoveNext_ThenMessageBroadcastSuccessful()
 		{
-			Messenger.AddListener(MatchTileGridMessage.CREATE_NEW_TILE, () =>
-			{
-				Assert.Pass();
-			});
-
 			allowFallingTilesCommand.Execute ();
 
 			IEnumerator iEnum = allowFallingTilesCommand.enumerator;
 			iEnum.MoveNext ();
 			iEnum.MoveNext ();
 
-			// If the test is successful then this is not called.
-			Assert.Fail ();
+			eventDispatcher.Received ().Broadcast (MatchTileGridMessage.CREATE_NEW_TILE);
 		}
 	}
 }

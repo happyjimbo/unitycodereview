@@ -5,6 +5,7 @@ using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
 using Touched;
+using EventDispatcher;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -16,18 +17,21 @@ namespace MatchTileGrid
 		private RemoveMatchTilesCommand removeMatchTilesCommand;
 		private IMatchTileGridModel matchTileGridModel;
 		private IMatchTileFactory matchTileFactory;
+		private IEventDispatcher eventDispatcher;
 
 		[SetUp]
 		public void SetUp()
 		{
 			matchTileGridModel = Substitute.For<IMatchTileGridModel>();
 			matchTileFactory = Substitute.For<IMatchTileFactory>();
+			eventDispatcher = Substitute.For<IEventDispatcher> ();
 
 			removeMatchTilesCommand = new RemoveMatchTilesCommand ();
 			removeMatchTilesCommand.matchTileGridModel = matchTileGridModel;
 			removeMatchTilesCommand.matchTileFactory = matchTileFactory;
+			removeMatchTilesCommand.eventDispatcher = eventDispatcher;
 
-			Messenger.CleanAndDestroy();
+			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]
@@ -139,14 +143,7 @@ namespace MatchTileGrid
 			loopEnumerator.MoveNext ();
 			loopEnumerator.MoveNext ();
 
-			Messenger.AddListener (MatchTileGridMessage.REMOVE_TILES_COMPLETE, () => 
-			{
-				Assert.Pass();	
-			});
-
-			IEnumerator endEnumerator = removeMatchTilesCommand.endEnumerator;
-			endEnumerator.MoveNext ();
-			endEnumerator.MoveNext ();
+			eventDispatcher.Received().Broadcast (MatchTileGridMessage.REMOVE_TILES_COMPLETE);
 		}
 
 	}

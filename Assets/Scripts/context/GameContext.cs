@@ -6,6 +6,7 @@ using Command;
 using MatchTileGrid;
 using ObjectPool;
 using Touched;
+using EventDispatcher;
 
 public class Main : IContextRoot
 {
@@ -21,6 +22,7 @@ public class Main : IContextRoot
 		DOTween.Init (true, false);
 				
 		SetupContainer();
+		SetUpEventDispatcher ();
 		CreateBindings ();
 		Build();
 	}
@@ -34,6 +36,13 @@ public class Main : IContextRoot
 
 		container.Bind<ICommandFactory>().AsSingle<CommandFactory>();
 	}
+
+	private void SetUpEventDispatcher()
+	{
+		container.Bind<IEventDispatcher>().AsSingle<EventDispatcher.EventDispatcher>();
+		container.Build<IEventDispatcher> ();
+	}
+
 	private void CreateBindings()
 	{
 		BindServices();

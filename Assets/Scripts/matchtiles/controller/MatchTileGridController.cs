@@ -5,6 +5,7 @@ using IoC;
 using Command;
 using ObjectPool;
 using Touched;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -12,6 +13,9 @@ namespace MatchTileGrid
 	{
 		[Inject]
 		public ICommandFactory commandFactory { private get; set; }
+
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
 
 		private MatchTileTouchedCommand matchTileTouchedCommand;
 		private CreateNewTileCommand createNewTileCommand;
@@ -29,38 +33,38 @@ namespace MatchTileGrid
 			loadMatchTileGridDataCommand.Execute ();
 
 			ICommand createMatchTileGridHolderCommand = commandFactory.Build<CreateMatchTileGridHolderCommand> ();
-			Messenger.AddListener (ObjectPoolMessage.OBJECT_POOL_COMPLETE, createMatchTileGridHolderCommand.Execute);
+			eventDispatcher.AddListener (ObjectPoolMessage.OBJECT_POOL_COMPLETE, createMatchTileGridHolderCommand.Execute);
 
 			ICommand createMatchTileGridCommand = commandFactory.Build<CreateMatchTileGridCommand> ();
-			Messenger.AddListener (MatchTileGridMessage.GRID_HOLDER_CREATED, createMatchTileGridCommand.Execute);
+			eventDispatcher.AddListener (MatchTileGridMessage.GRID_HOLDER_CREATED, createMatchTileGridCommand.Execute);
 
 			matchTileTouchedCommand = commandFactory.Build<MatchTileTouchedCommand> ();
-			Messenger.AddListener <TouchedObject> (TouchMessage.OBJECT_TOUCHED_2D, MatchTileTouched);
+			eventDispatcher.AddListener <TouchedObject> (TouchMessage.OBJECT_TOUCHED_2D, MatchTileTouched);
 
 			ICommand removeMatchTileHightLightCommand = commandFactory.Build<RemoveMatchTileHightLightCommand> ();
-			Messenger.AddListener (TouchMessage.TOUCH_ENDED, removeMatchTileHightLightCommand.Execute);
+			eventDispatcher.AddListener (TouchMessage.TOUCH_ENDED, removeMatchTileHightLightCommand.Execute);
 
 			ICommand calculateTilesToRemove = commandFactory.Build<CalculateTilesToRemoveCommand> ();
-			Messenger.AddListener (TouchMessage.TOUCH_ENDED, calculateTilesToRemove.Execute);
+			eventDispatcher.AddListener (TouchMessage.TOUCH_ENDED, calculateTilesToRemove.Execute);
 
 			ICommand allowFallingTilesCommand = commandFactory.Build<AllowFallingTilesCommand> ();
-			Messenger.AddListener (MatchTileGridMessage.ALLOW_FALLING_TILES, allowFallingTilesCommand.Execute);
+			eventDispatcher.AddListener (MatchTileGridMessage.ALLOW_FALLING_TILES, allowFallingTilesCommand.Execute);
 
 			createNewTileCommand = commandFactory.Build<CreateNewTileCommand> ();
-			Messenger.AddListener (MatchTileGridMessage.CREATE_NEW_TILE, CreateNewTile);
+			eventDispatcher.AddListener (MatchTileGridMessage.CREATE_NEW_TILE, CreateNewTile);
 
 			ICommand checkMovesRemainingCommand = commandFactory.Build<CheckMovesRemainingCommand> ();
-			Messenger.AddListener (MatchTileGridMessage.CHECK_MOVES_REMAINING, checkMovesRemainingCommand.Execute);
+			eventDispatcher.AddListener (MatchTileGridMessage.CHECK_MOVES_REMAINING, checkMovesRemainingCommand.Execute);
 
 			ICommand shuffleGridCommand = commandFactory.Build<ShuffleGridCommand> ();
-			Messenger.AddListener (MatchTileGridMessage.SHUFFLE_GRID, shuffleGridCommand.Execute);
+			eventDispatcher.AddListener (MatchTileGridMessage.SHUFFLE_GRID, shuffleGridCommand.Execute);
 
 			hideInvalidTilesCommand = commandFactory.Build<HideInvalidTilesCommand> ();
-			Messenger.AddListener <MatchTileType> (MatchTileGridMessage.HIDE_INVALID_TILES, HideInvalidTiles);
-			Messenger.AddListener (TouchMessage.TOUCH_ENDED, MatchTileShowTiles);
+			eventDispatcher.AddListener <MatchTileType> (MatchTileGridMessage.HIDE_INVALID_TILES, HideInvalidTiles);
+			eventDispatcher.AddListener (TouchMessage.TOUCH_ENDED, MatchTileShowTiles);
 
 			removeMatchTilesCommand = commandFactory.Build<RemoveMatchTilesCommand> ();
-			Messenger.AddListener <RemoveTile> (MatchTileGridMessage.REMOVE_TILES, RemoveTiles);
+			eventDispatcher.AddListener <RemoveTile> (MatchTileGridMessage.REMOVE_TILES, RemoveTiles);
 
 			ICommand positionTilesCommand = commandFactory.Build<PositionTilesCommand> ();
 			positionTilesCommand.Execute ();
