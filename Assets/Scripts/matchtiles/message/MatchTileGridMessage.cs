@@ -16,7 +16,5 @@ namespace MatchTileGrid
 		public const string ALLOW_FALLING_TILES = "ALLOW_FALLING_TILES";
 
 		public const string REMOVE_TILES = "REMOVE_TILES";
-
-		public const string REMOVE_TILES_COMPLETE = "REMOVE_TILES_COMPLETE";
 	}
 }

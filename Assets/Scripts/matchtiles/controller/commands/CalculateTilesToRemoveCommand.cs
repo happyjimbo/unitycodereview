@@ -4,6 +4,7 @@ using UnityEngine;
 using IoC;
 using Command;
 using DG.Tweening;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -11,6 +12,9 @@ namespace MatchTileGrid
 	{
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
+
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
 
 		public void Execute()
 		{
@@ -57,7 +61,7 @@ namespace MatchTileGrid
 						removeTile.tilesChained = touchedCount;
 					}
 
-					Messenger.Broadcast (MatchTileGridMessage.REMOVE_TILES, removeTile);
+					eventDispatcher.Broadcast (MatchTileGridMessage.REMOVE_TILES, removeTile);
 				}
 			}
 		}

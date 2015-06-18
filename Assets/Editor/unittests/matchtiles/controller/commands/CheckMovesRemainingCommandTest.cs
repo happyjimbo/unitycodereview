@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
+using EventDispatcher;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -14,16 +15,19 @@ namespace MatchTileGrid
 	{
 		private CheckMovesRemainingCommand checkMovesRemainingCommand;
 		private IMatchTileGridModel matchTileGridModel;
+		private IEventDispatcher eventDispatcher;
 
 		[SetUp]
 		public void SetUp()
 		{
 			matchTileGridModel = Substitute.For<IMatchTileGridModel>();
+			eventDispatcher = Substitute.For<IEventDispatcher> ();
 
 			checkMovesRemainingCommand = new CheckMovesRemainingCommand ();
 			checkMovesRemainingCommand.matchTileGridModel = matchTileGridModel;
+			checkMovesRemainingCommand.eventDispatcher = eventDispatcher;
 
-			Messenger.CleanAndDestroy();
+			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]
@@ -44,15 +48,9 @@ namespace MatchTileGrid
 
 			matchTileGridModel.GetMatchTiles ().Returns (matchTilesDic);
 
-			Messenger.AddListener (MatchTileGridMessage.SHUFFLE_GRID, () =>
-			{
-				Assert.Pass();
-			});
-
 			checkMovesRemainingCommand.Execute ();
 
-			Messenger.CleanAndDestroy();
-			Assert.Fail();
+			eventDispatcher.Received ().Broadcast (MatchTileGridMessage.SHUFFLE_GRID);
 		}
 
 		[Test]
@@ -85,14 +83,9 @@ namespace MatchTileGrid
 
 			matchTileGridModel.GetHintMatchTiles ().Returns (new List<MatchTile>());
 
-			Messenger.AddListener (MatchTileGridMessage.SHUFFLE_GRID, () =>
-			{
-				Assert.Fail();
-			});
-
 			checkMovesRemainingCommand.Execute ();
 
-			Assert.Pass();
+			eventDispatcher.DidNotReceive ().Broadcast (MatchTileGridMessage.SHUFFLE_GRID);
 		}
 
 		private MatchTile CreateMatchTile(MatchTileType type, Vector2 position)

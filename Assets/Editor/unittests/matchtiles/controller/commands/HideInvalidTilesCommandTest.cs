@@ -23,8 +23,6 @@ namespace MatchTileGrid
 
 			hideInvalidTilesCommand = new HideInvalidTilesCommand ();
 			hideInvalidTilesCommand.matchTileGridModel = matchTileGridModel;
-
-			Messenger.CleanAndDestroy();
 		}
 
 		[Test]

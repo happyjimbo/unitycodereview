@@ -2,11 +2,15 @@
 using UnityEngine;
 using Command;
 using IoC;
+using EventDispatcher;
 
 namespace Touched
 {
 	public class CalculateTouchCommand : ICommand
 	{
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
+
 		public Vector3 touchedPosition { private get; set; }
 
 		public void Execute()
@@ -17,7 +21,7 @@ namespace Touched
 
 			if (!touched.Equals(default(TouchedObject)))
 			{
-				Messenger.Broadcast(TouchMessage.OBJECT_TOUCHED_2D, touched);
+				eventDispatcher.Broadcast(TouchMessage.OBJECT_TOUCHED_2D, touched);
 			}	
 		}
 

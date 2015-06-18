@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
+using EventDispatcher;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -15,18 +16,21 @@ namespace MatchTileGrid
 		private CreateNewTileCommand createNewTileCommand;
 		private IMatchTileGridModel matchTileGridModel;
 		private IMatchTileFactory matchTileFactory;
+		private IEventDispatcher eventDispatcher;
 
 		[SetUp]
 		public void SetUp()
 		{
 			matchTileGridModel = Substitute.For<IMatchTileGridModel>();
 			matchTileFactory = Substitute.For<IMatchTileFactory> ();
+			eventDispatcher = Substitute.For<IEventDispatcher> ();
 
 			createNewTileCommand = new CreateNewTileCommand ();
 			createNewTileCommand.matchTileGridModel = matchTileGridModel;
 			createNewTileCommand.matchTileFactory = matchTileFactory;
+			createNewTileCommand.eventDispatcher = eventDispatcher;
 
-			Messenger.CleanAndDestroy();
+			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]
@@ -49,11 +53,6 @@ namespace MatchTileGrid
 		[Test]
 		public void GivenMatchTileSlotIsNotEmpty_WhenExecute_ThenBroadcastCheckMovesRemaining()
 		{
-			Messenger.AddListener(MatchTileGridMessage.CHECK_MOVES_REMAINING, () =>
-			{
-				Assert.Pass();
-			});
-
 			matchTileGridModel.gridSize = new Vector2 (1, 1);
 			matchTileGridModel.GetMatchTile (new Vector2(0, 0)).Returns (new MatchTile());
 
@@ -63,7 +62,7 @@ namespace MatchTileGrid
 			iEnum.MoveNext ();
 			iEnum.MoveNext ();
 
-			Assert.Fail ();
+			eventDispatcher.Received ().Broadcast (MatchTileGridMessage.CHECK_MOVES_REMAINING);
 		}
 	}
 }

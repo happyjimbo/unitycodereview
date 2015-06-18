@@ -5,6 +5,7 @@ using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
 using Touched;
+using EventDispatcher;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -14,13 +15,17 @@ namespace Touched
 	internal class CalculateTouchCommandTest
 	{
 		private CalculateTouchCommand calculateTouchCommand;
+		private IEventDispatcher eventDispatcher;
 
 		[SetUp]
 		public void SetUp()
 		{
-			calculateTouchCommand = new CalculateTouchCommand ();
+			eventDispatcher = Substitute.For<IEventDispatcher> ();
 
-			Messenger.CleanAndDestroy();
+			calculateTouchCommand = new CalculateTouchCommand ();
+			calculateTouchCommand.eventDispatcher = eventDispatcher;
+
+			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]
@@ -33,30 +38,20 @@ namespace Touched
 			collider.center = Vector3.zero;
 			collider.size = new Vector2 (2, 2);
 
-			Messenger.AddListener <TouchedObject> (TouchMessage.OBJECT_TOUCHED_2D, (TouchedObject touched) =>
-			{
-				GameObject.DestroyImmediate(gameObject);
-				Assert.Pass();
-			});
-
 			calculateTouchCommand.touchedPosition = Vector3.zero;
 			calculateTouchCommand.Execute ();
 
-			Assert.Fail ();
+			eventDispatcher.Received ().Broadcast (TouchMessage.OBJECT_TOUCHED_2D, Arg.Any<TouchedObject> ());
+			GameObject.DestroyImmediate(gameObject);
 		}
 
 		[Test]
 		public void GivenNoObjectOnScreen_WhenExecute_ThenNoActionTaken()
 		{
-			Messenger.AddListener <TouchedObject> (TouchMessage.OBJECT_TOUCHED_2D, (TouchedObject touched) =>
-			{
-				Assert.Fail();
-			});
-
 			calculateTouchCommand.touchedPosition = Vector3.zero;
 			calculateTouchCommand.Execute ();
 
-			Assert.Pass ();
+			eventDispatcher.DidNotReceive ().Broadcast (TouchMessage.OBJECT_TOUCHED_2D, Arg.Any<TouchedObject> ());
 		}
 	}
 }

@@ -3,15 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using IoC;
+using EventDispatcher;
 
 
 namespace ObjectPool
 {
 	/// <summary>
-	/// Repository of commonly used prefabs. 
+	/// Please note that this was originally built from a 3rd party library,
+	/// but has been customised
 	/// </summary>
 	public class ObjectPoolModel : IObjectPoolModel
 	{
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
+
 		/// <summary>
 		/// The object prefabs which the pool can handle	
 		/// by The amount of objects of each type to buffer.
@@ -72,10 +77,10 @@ namespace ObjectPool
 				PoolObject(newObj, objectPrefab.name);
 			}	
 					
-			Coroutiner.StartCoroutine ( PreloadPoolObjectTextures(objects) );
+			Coroutiner.StartCoroutine ( PreloadObjectPoolTextures(objects) );
 		}
 		
-		private IEnumerator PreloadPoolObjectTextures(GameObject[] objects)
+		private IEnumerator PreloadObjectPoolTextures(GameObject[] objects)
 		{			
 			for (int i = 0; i < objects.Length; i++)
 			{		
@@ -108,7 +113,7 @@ namespace ObjectPool
 			yield return null;
 			yield return null;
 
-			Messenger.Broadcast ( ObjectPoolMessage.OBJECT_POOL_COMPLETE );
+			eventDispatcher.Broadcast ( ObjectPoolMessage.OBJECT_POOL_COMPLETE );
 		}
 
 		/// <summary>	
@@ -204,7 +209,7 @@ namespace ObjectPool
 	public struct ObjectPoolEntry 
 	{		
 		/// <summary>		
-		/// the object to pre instantiate		
+		/// the object to pre-instantiate		
 		/// </summary>			
 		public GameObject Prefab;
 		

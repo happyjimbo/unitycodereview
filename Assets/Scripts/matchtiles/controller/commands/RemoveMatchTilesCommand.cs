@@ -80,7 +80,7 @@ namespace MatchTileGrid
 
 		private IEnumerator End()
 		{
-			eventDispatcher.Broadcast (MatchTileGridMessage.REMOVE_TILES_COMPLETE);
+			eventDispatcher.Broadcast (MatchTileGridMessage.ALLOW_FALLING_TILES);
 
 			yield return new WaitForSeconds (0.15f);
 

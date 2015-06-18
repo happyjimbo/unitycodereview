@@ -15,8 +15,6 @@ public class Main : IContextRoot
 	
 	public Main()
 	{
-		Messenger.Cleanup ();
-
 		Resources.UnloadUnusedAssets();
 
 		DOTween.Init (true, false);

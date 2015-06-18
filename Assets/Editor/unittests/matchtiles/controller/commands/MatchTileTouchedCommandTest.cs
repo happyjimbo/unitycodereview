@@ -5,6 +5,7 @@ using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
 using Touched;
+using EventDispatcher;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -15,14 +16,17 @@ namespace MatchTileGrid
 	{
 		private MatchTileTouchedCommand matchTileTouchedCommand;
 		private IMatchTileGridModel matchTileGridModel;
+		private IEventDispatcher eventDispatcher;
 
 		[SetUp]
 		public void SetUp()
 		{
 			matchTileGridModel = Substitute.For<IMatchTileGridModel>();
+			eventDispatcher = Substitute.For<IEventDispatcher> ();
 
 			matchTileTouchedCommand = new MatchTileTouchedCommand ();
 			matchTileTouchedCommand.matchTileGridModel = matchTileGridModel;
+			matchTileTouchedCommand.eventDispatcher = eventDispatcher;
 
 			GameObject gameObject = new GameObject ();
 			gameObject.transform.localPosition = Vector3.zero;
@@ -32,7 +36,7 @@ namespace MatchTileGrid
 
 			matchTileTouchedCommand.touchedObject = touchedObject;
 
-			Messenger.CleanAndDestroy();
+			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]
@@ -64,7 +68,7 @@ namespace MatchTileGrid
 			MatchTile matchTile = new MatchTile ();
 			matchTile.canTouch = true;
 			matchTile.position = Vector2.zero;
-			matchTile.tileObject = new GameObject();;
+			matchTile.tileObject = new GameObject();
 
 			matchTileGridModel.GetMatchTile (Vector2.zero).Returns (matchTile);
 			matchTileGridModel.CanTouchTile (matchTile).Returns (true);
@@ -77,47 +81,37 @@ namespace MatchTileGrid
 		[Test]
 		public void GivenCanTouchTile_WhenTouchObjectExecute_ThenBroadcastTileSelected()
 		{
-			Messenger.AddListener <MatchTileType> (MatchTileGridMessage.TILE_SELECTED, (MatchTileType type) =>
-			{
-				Assert.Pass();
-			});
-
 			matchTileGridModel.allowTouch = true;
 
 			MatchTile matchTile = new MatchTile ();
 			matchTile.canTouch = true;
 			matchTile.position = Vector2.zero;
-			matchTile.tileObject = new GameObject();;
+			matchTile.tileObject = new GameObject();
 
 			matchTileGridModel.GetMatchTile (Vector2.zero).Returns (matchTile);
 			matchTileGridModel.CanTouchTile (matchTile).Returns (true);
 
 			matchTileTouchedCommand.Execute ();
 
-			Assert.Fail ();
+			eventDispatcher.Received ().Broadcast (MatchTileGridMessage.TILE_SELECTED, Arg.Any<MatchTileType> ());
 		}
 
 		[Test]
 		public void GivenCanTouchTile_WhenTouchObjectExecute_ThenBroadcastHideInvalidTiles()
 		{
-			Messenger.AddListener <MatchTileType> (MatchTileGridMessage.HIDE_INVALID_TILES, (MatchTileType type) =>
-			{
-				Assert.Pass();
-			});
-
 			matchTileGridModel.allowTouch = true;
 
 			MatchTile matchTile = new MatchTile ();
 			matchTile.canTouch = true;
 			matchTile.position = Vector2.zero;
-			matchTile.tileObject = new GameObject();;
+			matchTile.tileObject = new GameObject();
 
 			matchTileGridModel.GetMatchTile (Vector2.zero).Returns (matchTile);
 			matchTileGridModel.CanTouchTile (matchTile).Returns (true);
 
 			matchTileTouchedCommand.Execute ();
 
-			Assert.Fail ();
+			eventDispatcher.Received ().Broadcast (MatchTileGridMessage.HIDE_INVALID_TILES, Arg.Any<MatchTileType> ());
 		}
 
 		[Test]

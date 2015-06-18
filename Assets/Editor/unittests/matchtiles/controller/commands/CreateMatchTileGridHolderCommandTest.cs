@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
+using EventDispatcher;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -14,6 +15,7 @@ namespace MatchTileGrid
 	{
 		private CreateMatchTileGridHolderCommand createMatchTileGridHolderCommand;
 		private IMatchTileGridModel matchTileGridModel;
+		private IEventDispatcher eventDispatcher;
 
 		[SetUp]
 		public void SetUp()
@@ -21,13 +23,16 @@ namespace MatchTileGrid
 			matchTileGridModel = Substitute.For<IMatchTileGridModel>();
 			matchTileGridModel.gridHolder = new GameObject ();
 
+			eventDispatcher = Substitute.For<IEventDispatcher> ();
+
 			createMatchTileGridHolderCommand = new CreateMatchTileGridHolderCommand ();
 			createMatchTileGridHolderCommand.matchTileGridModel = matchTileGridModel;
+			createMatchTileGridHolderCommand.eventDispatcher = eventDispatcher;
 
 			MatchTilesData matchTilesData = ScriptableObject.CreateInstance<MatchTilesData> ();
 			matchTileGridModel.matchTilesData.Returns (matchTilesData);
 
-			Messenger.CleanAndDestroy();
+			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]
@@ -43,14 +48,8 @@ namespace MatchTileGrid
 		[Test]
 		public void GivenAddListenerForGridHolderCreated_WhenExecute_ThenBroadcaseGridHolderCreated()
 		{
-			Messenger.AddListener(MatchTileGridMessage.GRID_HOLDER_CREATED, () =>
-			{
-				Assert.Pass();
-			});
-
 			createMatchTileGridHolderCommand.Execute ();
-
-			Assert.Fail();
+			eventDispatcher.Received ().Broadcast (MatchTileGridMessage.GRID_HOLDER_CREATED);
 		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using IoC;
 using Command;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -14,6 +15,9 @@ namespace MatchTileGrid
 
 		[Inject]
 		public IMatchTileFactory matchTileFactory { private get; set; }
+
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
 
 		public void Execute()
 		{
@@ -59,7 +63,7 @@ namespace MatchTileGrid
 
 		private void GridCreationComplete()
 		{
-			Messenger.Broadcast (MatchTileGridMessage.CHECK_MOVES_REMAINING);
+			eventDispatcher.Broadcast (MatchTileGridMessage.CHECK_MOVES_REMAINING);
 		}
 	}
 }

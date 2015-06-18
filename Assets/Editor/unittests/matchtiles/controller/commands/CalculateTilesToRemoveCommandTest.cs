@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
+using EventDispatcher;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -14,18 +15,21 @@ namespace MatchTileGrid
 	{
 		private CalculateTilesToRemoveCommand calculateTilesToRemoveCommand;
 		private IMatchTileGridModel matchTileGridModel;
+		private IEventDispatcher eventDispatcher;
 
 		[SetUp]
 		public void SetUp()
 		{
 			matchTileGridModel = Substitute.For<IMatchTileGridModel>();
+			eventDispatcher = Substitute.For<IEventDispatcher> ();
 
 			calculateTilesToRemoveCommand = new CalculateTilesToRemoveCommand ();
 			calculateTilesToRemoveCommand.matchTileGridModel = matchTileGridModel;
+			calculateTilesToRemoveCommand.eventDispatcher = eventDispatcher;
 
 			matchTileGridModel.allowTouch = true;
 
-			Messenger.CleanAndDestroy();
+			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]
@@ -38,17 +42,11 @@ namespace MatchTileGrid
 			matchTiles.Add (tile);
 
 			matchTileGridModel.GetTilesTouched ().Returns (matchTiles);
-
 			matchTileGridModel.ValidMoveTouchEnded ().Returns (true);
-
-			Messenger.AddListener <RemoveTile> (MatchTileGridMessage.REMOVE_TILES, (RemoveTile removeTile) =>
-			{
-				Assert.Pass();
-			});
 
 			calculateTilesToRemoveCommand.Execute ();
 
-			Assert.Fail ();
+			eventDispatcher.Received ().Broadcast (MatchTileGridMessage.REMOVE_TILES, Arg.Any<RemoveTile> ());
 		}
 
 		[Test]

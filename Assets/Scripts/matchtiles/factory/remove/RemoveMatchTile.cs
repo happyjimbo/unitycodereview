@@ -4,6 +4,7 @@ using UnityEngine;
 using IoC;
 using DG.Tweening;
 using ObjectPool;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -15,6 +16,9 @@ namespace MatchTileGrid
 		[Inject]
 		public IObjectPoolModel objectPoolModel { private get; set; }
 
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
+
 		public void Remove(MatchTile matchTile)
 		{				
 			matchTile.tileObject.transform.DOKill ();
@@ -25,8 +29,7 @@ namespace MatchTileGrid
 
 		private void PoolObject(MatchTile matchTile)
 		{
-			objectPoolModel.PoolObject (matchTile.tileObject);	
-			Messenger.Broadcast (MatchTileGridMessage.ALLOW_FALLING_TILES);
+			objectPoolModel.PoolObject (matchTile.tileObject);
 		}
 
 		private Vector3 GetTileScale()

@@ -5,6 +5,7 @@ using IoC;
 using Command;
 using DG.Tweening;
 using Touched;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -12,6 +13,9 @@ namespace MatchTileGrid
 	{
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
+
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
 
 		public TouchedObject touchedObject { private get; set; }
 
@@ -33,11 +37,11 @@ namespace MatchTileGrid
 
 			if (matchTileGridModel.CanTouchTile(tile))
 			{
-				Messenger.Broadcast (MatchTileGridMessage.TILE_SELECTED, tile.type);
+				eventDispatcher.Broadcast (MatchTileGridMessage.TILE_SELECTED, tile.type);
 
 				matchTileGridModel.AddTileTouched (tilePos, tile);
 
-				Messenger.Broadcast (MatchTileGridMessage.HIDE_INVALID_TILES, tile.type);
+				eventDispatcher.Broadcast (MatchTileGridMessage.HIDE_INVALID_TILES, tile.type);
 
 				HighLight (tile);
 				Punch (tile.tileObject);

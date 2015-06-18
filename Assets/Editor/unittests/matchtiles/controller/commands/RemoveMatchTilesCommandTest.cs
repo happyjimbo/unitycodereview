@@ -143,7 +143,7 @@ namespace MatchTileGrid
 			loopEnumerator.MoveNext ();
 			loopEnumerator.MoveNext ();
 
-			eventDispatcher.Received().Broadcast (MatchTileGridMessage.REMOVE_TILES_COMPLETE);
+			eventDispatcher.Received().Broadcast (MatchTileGridMessage.ALLOW_FALLING_TILES);
 		}
 
 	}

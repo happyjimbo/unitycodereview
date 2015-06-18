@@ -23,8 +23,6 @@ namespace MatchTileGrid
 
 			removeMatchTileHightLightCommand = new RemoveMatchTileHightLightCommand ();
 			removeMatchTileHightLightCommand.matchTileGridModel = matchTileGridModel;
-
-			Messenger.CleanAndDestroy();
 		}
 
 		[Test]

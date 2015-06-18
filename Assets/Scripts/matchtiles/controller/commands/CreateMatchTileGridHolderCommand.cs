@@ -2,6 +2,7 @@
 using UnityEngine;
 using Command;
 using IoC;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -10,12 +11,15 @@ namespace MatchTileGrid
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
 
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
+
 		public void Execute()
 		{
 			MatchTilesData layout = matchTileGridModel.matchTilesData;
 			CreateGameHolder(layout);
 
-			Messenger.Broadcast (MatchTileGridMessage.GRID_HOLDER_CREATED);
+			eventDispatcher.Broadcast (MatchTileGridMessage.GRID_HOLDER_CREATED);
 		}
 
 		private void CreateGameHolder(MatchTilesData layout)

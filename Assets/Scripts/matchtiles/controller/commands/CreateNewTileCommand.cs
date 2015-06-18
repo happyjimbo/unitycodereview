@@ -4,6 +4,7 @@ using UnityEngine;
 using IoC;
 using Command;
 using DG.Tweening;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -15,7 +16,11 @@ namespace MatchTileGrid
 		[Inject]
 		public IMatchTileFactory matchTileFactory { private get; set; }
 
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
+
 		public IEnumerator enumerator { get; private set; }
+		public IEnumerator loopEnumerator { get; private set; }
 
 		public void Execute()
 		{
@@ -51,8 +56,8 @@ namespace MatchTileGrid
 
 			if (createMore)
 			{				
-				enumerator = CreateNewTile (pos, previousAllowTouch);
-				Coroutiner.StartCoroutine (enumerator);				
+				loopEnumerator = CreateNewTile (pos, previousAllowTouch);
+				Coroutiner.StartCoroutine (loopEnumerator);				
 			}
 			else
 			{
@@ -67,7 +72,7 @@ namespace MatchTileGrid
 				matchTileGridModel.allowTouch = true;	
 			}
 
-			Messenger.Broadcast (MatchTileGridMessage.CHECK_MOVES_REMAINING);
+			eventDispatcher.Broadcast (MatchTileGridMessage.CHECK_MOVES_REMAINING);
 		}
 	}
 }

@@ -5,6 +5,7 @@ using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
 using Touched;
+using EventDispatcher;
 
 // Using the Given When Then approach:
 // http://martinfowler.com/bliki/GivenWhenThen.html
@@ -15,16 +16,19 @@ namespace MatchTileGrid
 	{
 		private ShuffleGridCommand shuffleGridCommand;
 		private IMatchTileGridModel matchTileGridModel;
+		private IEventDispatcher eventDispatcher;
 
 		[SetUp]
 		public void SetUp()
 		{
 			matchTileGridModel = Substitute.For<IMatchTileGridModel>();
+			eventDispatcher = Substitute.For<IEventDispatcher> ();
 
 			shuffleGridCommand = new ShuffleGridCommand ();
 			shuffleGridCommand.matchTileGridModel = matchTileGridModel;
+			shuffleGridCommand.eventDispatcher = eventDispatcher;
 
-			Messenger.CleanAndDestroy();
+			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]
@@ -82,14 +86,8 @@ namespace MatchTileGrid
 		[Test]
 		public void GivenAddListenerCheckMovesRemaining_WhenExecute_ThenBroadcastCheckMovesRemaining()
 		{
-			Messenger.AddListener (MatchTileGridMessage.CHECK_MOVES_REMAINING, () => 
-			{
-				Assert.Pass();		
-			});
-
 			shuffleGridCommand.Execute ();
-
-			Assert.Fail ();
+			eventDispatcher.Received ().Broadcast (MatchTileGridMessage.CHECK_MOVES_REMAINING);
 		}
 
 	}

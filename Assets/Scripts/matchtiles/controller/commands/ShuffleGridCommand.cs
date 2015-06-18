@@ -4,6 +4,7 @@ using UnityEngine;
 using IoC;
 using Command;
 using DG.Tweening;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -11,6 +12,9 @@ namespace MatchTileGrid
 	{
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
+
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
 
 		private List<MatchTile> matchTileList = new List<MatchTile>();
 		private List<Vector2> matchTilePositions = new List<Vector2>();
@@ -23,7 +27,7 @@ namespace MatchTileGrid
 			RemoveTiles ();
 			AddTilesToNewPositions ();
 
-			Messenger.Broadcast (MatchTileGridMessage.CHECK_MOVES_REMAINING);
+			eventDispatcher.Broadcast (MatchTileGridMessage.CHECK_MOVES_REMAINING);
 		}
 
 		private void RemoveTiles()

@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using IoC;
 using Command;
+using EventDispatcher;
 
 namespace Touched
 {
@@ -20,12 +21,15 @@ namespace Touched
 		[Inject]
 		public ITouchService touchService { private get; set; }
 
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
+
 		private CalculateTouchCommand calculateTouchCommand;
 
 		public void OnInject()
 		{			
 			calculateTouchCommand = commandFactory.Build<CalculateTouchCommand> ();
-			Messenger.AddListener <Vector3> (TouchMessage.CALCULATE_TOUCH, CalculateTouch);
+			eventDispatcher.AddListener <Vector3> (TouchMessage.CALCULATE_TOUCH, CalculateTouch);
 		}
 
 		private void CalculateTouch(Vector3 touchedPosition)

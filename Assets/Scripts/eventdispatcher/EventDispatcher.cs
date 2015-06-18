@@ -2,6 +2,13 @@
 
 namespace EventDispatcher
 {
+	/// <summary>
+	/// This wrapper allow us to inject our IEventDispatcher into our classes
+	/// without them knowing about the Messenger implementation (which is a 3rd part library).
+	/// Going forwards I'd be interested in looking at using a Signals solution
+	/// instead of this, where we're not passing magic strings around the code base and instead
+	/// we're using a strongly typed soltion instead..
+	/// </summary>
 	public class EventDispatcher : IEventDispatcher
 	{
 		public void AddListener(string eventType, Callback handler) 

@@ -22,8 +22,6 @@ namespace MatchTileGrid
 
 			positionTilesCommand = new PositionTilesCommand ();
 			positionTilesCommand.matchTileGridModel = matchTileGridModel;
-
-			Messenger.CleanAndDestroy();
 		}
 
 		[Test]

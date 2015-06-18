@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using IoC;
 using Command;
+using EventDispatcher;
 
 namespace MatchTileGrid
 {
@@ -10,6 +11,9 @@ namespace MatchTileGrid
 	{
 		[Inject]
 		public IMatchTileGridModel matchTileGridModel { private get; set; }
+
+		[Inject]
+		public IEventDispatcher eventDispatcher { private get; set; }
 
 		public void Execute()
 		{
@@ -23,7 +27,7 @@ namespace MatchTileGrid
 			if (!matches)
 			{
 				Debug.Log ("No matches, shuffle grid!");
-				Messenger.Broadcast (MatchTileGridMessage.SHUFFLE_GRID);
+				eventDispatcher.Broadcast (MatchTileGridMessage.SHUFFLE_GRID);
 			}
 		}
 
