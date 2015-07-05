@@ -29,8 +29,6 @@ namespace MatchTileGrid
 			createNewTileCommand.matchTileGridModel = matchTileGridModel;
 			createNewTileCommand.matchTileFactory = matchTileFactory;
 			createNewTileCommand.eventDispatcher = eventDispatcher;
-
-			eventDispatcher.CleanAndDestroy();
 		}
 
 		[Test]

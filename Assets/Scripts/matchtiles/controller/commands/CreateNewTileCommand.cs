@@ -21,7 +21,7 @@ namespace MatchTileGrid
 
 		// The public accessable IEnumerator's are unfortunatly needed for our 
 		// unit tests so that they can manually walk through the entire 
-		// IEnumerator methods in order to test code that's executed after the yeild.
+		// IEnumerator methods in order to test code that's executed after the yield.
 		public IEnumerator enumerator { get; private set; }
 		public IEnumerator loopEnumerator { get; private set; }
 

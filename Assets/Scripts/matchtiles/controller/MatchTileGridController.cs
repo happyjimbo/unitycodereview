@@ -18,7 +18,6 @@ namespace MatchTileGrid
 		public IEventDispatcher eventDispatcher { private get; set; }
 
 		private MatchTileTouchedCommand matchTileTouchedCommand;
-		private CreateNewTileCommand createNewTileCommand;
 		private HideInvalidTilesCommand hideInvalidTilesCommand;
 		private RemoveMatchTilesCommand removeMatchTilesCommand;
 
@@ -50,8 +49,8 @@ namespace MatchTileGrid
 			ICommand allowFallingTilesCommand = commandFactory.Build<AllowFallingTilesCommand> ();
 			eventDispatcher.AddListener (MatchTileGridMessage.ALLOW_FALLING_TILES, allowFallingTilesCommand.Execute);
 
-			createNewTileCommand = commandFactory.Build<CreateNewTileCommand> ();
-			eventDispatcher.AddListener (MatchTileGridMessage.CREATE_NEW_TILE, CreateNewTile);
+			ICommand createNewTileCommand = commandFactory.Build<CreateNewTileCommand> ();
+			eventDispatcher.AddListener (MatchTileGridMessage.CREATE_NEW_TILE, createNewTileCommand.Execute);
 
 			ICommand checkMovesRemainingCommand = commandFactory.Build<CheckMovesRemainingCommand> ();
 			eventDispatcher.AddListener (MatchTileGridMessage.CHECK_MOVES_REMAINING, checkMovesRemainingCommand.Execute);
@@ -77,11 +76,6 @@ namespace MatchTileGrid
 		{
 			matchTileTouchedCommand.touchedObject = touchedObject;
 			matchTileTouchedCommand.Execute ();
-		}
-
-		private void CreateNewTile()
-		{
-			createNewTileCommand.Execute ();
 		}
 
 		private void HideInvalidTiles(MatchTileType type)
