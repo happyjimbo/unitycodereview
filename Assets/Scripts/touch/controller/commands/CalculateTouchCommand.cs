@@ -15,7 +15,7 @@ namespace Touched
 
 		public void Execute()
 		{
-			Camera camera = Camera.main.camera;
+			Camera camera = Camera.main.GetComponent<Camera>();
 			Ray ray = camera.ScreenPointToRay(touchedPosition);
 			TouchedObject touched = DetectTouch2D (ray);
 

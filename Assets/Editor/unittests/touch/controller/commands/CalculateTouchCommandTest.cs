@@ -35,7 +35,7 @@ namespace Touched
 			gameObject.transform.localScale = new Vector3 (2, 2, 2);
 
 			BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D> ();
-			collider.center = Vector3.zero;
+			collider.offset = Vector3.zero;
 			collider.size = new Vector2 (2, 2);
 
 			calculateTouchCommand.touchedPosition = Vector3.zero;
