@@ -61,6 +61,8 @@ public class Main : IContextRoot
 
 	private void BindModels()
 	{	
+		container.Bind<IObstacleTilesModel>().AsSingle<ObstacleTilesModel>();
+		container.Bind<ISpecialTilesModel> ().AsSingle <SpecialTilesModel>();
 		container.Bind<IMatchTileGridModel> ().AsSingle <MatchTileGridModel>();
 		container.Bind<IObjectPoolModel>().AsSingle<ObjectPoolModel>();
 	}
@@ -72,6 +74,7 @@ public class Main : IContextRoot
 	private void BindControllers()
 	{
 		container.Bind<MatchTileGridController> ().AsSingle ();
+		container.Bind<SpecialTileController> ().AsSingle ();
 		container.Bind<TouchController> ().AsSingle ();
         container.Bind<GameObjectPoolController>().AsSingle();
 	}
@@ -103,6 +106,7 @@ public class Main : IContextRoot
 	private void BuildControllers()
 	{			
 		container.Build<MatchTileGridController> ();
+		container.Build<SpecialTileController> ();
 		container.Build<GameObjectPoolController>();
 			
 		TouchController touchController = container.Build<TouchController>();

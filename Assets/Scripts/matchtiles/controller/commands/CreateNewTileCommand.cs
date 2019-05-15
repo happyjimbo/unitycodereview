@@ -53,7 +53,7 @@ namespace MatchTileGrid
 				{
 					createMore = true;
 
-					matchTileFactory.CreateRandomMatchTile (tilePos);
+					matchTileFactory.CreateRandomMatchTile (tilePos, MatchTileObstacleType.Null);
 				}
 			}
 

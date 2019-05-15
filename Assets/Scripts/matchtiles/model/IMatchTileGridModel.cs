@@ -22,6 +22,7 @@ namespace MatchTileGrid
 		int movesRemaining { get; set; }
 		int tilesToReplace { get; set; }
 		bool allowTouch { get; set; }
+		int GetTrapperAmount();
 
 		MatchTilesData matchTilesData { get; set; }
 		void AddNewTile(MatchTile tile);
@@ -29,8 +30,10 @@ namespace MatchTileGrid
 		MatchTile GetMatchTile(Vector2 pos);
 		Dictionary<Vector2, MatchTile> GetMatchTiles();
 		void MoveTile (Vector2 currentPosition, Vector2 newPosition);
+		void SwapTiles(Vector2 firstPos, Vector2 secondPos);
 		List<MatchTile> GetAllMatchTilesNotOfType (MatchTileType type);
 		MatchTileType GetMatchTileType (string str);
+		List<MatchTile> GetAllMatchTilesOfType(MatchTileType type);
 		IMatchTileComponent GetMatchTileComponent (MatchTile tile);
 
 		float lastTouchedTimestamp { get; set; }
@@ -47,6 +50,7 @@ namespace MatchTileGrid
 		void ClearHintMatchTiles ();
 
 		bool CheckIfMoveAbove (Vector2 currentPos);
+		MatchTile GetRandomTileSpace();
 		bool CanMove (MatchTile tile);
 		bool ValidMatchTile (MatchTileType type);
 	}

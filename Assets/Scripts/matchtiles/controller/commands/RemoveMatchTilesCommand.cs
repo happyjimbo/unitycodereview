@@ -10,14 +10,11 @@ namespace MatchTileGrid
 {
 	public class RemoveMatchTilesCommand : ICommand
 	{
-		[Inject]
-		public IMatchTileGridModel matchTileGridModel { private get; set; }
-
-		[Inject]
-		public IMatchTileFactory matchTileFactory { private get; set; }
-
-		[Inject]
-		public IEventDispatcher eventDispatcher { private get; set; }
+		[Inject] public IMatchTileGridModel matchTileGridModel { private get; set; }
+		[Inject] public ISpecialTilesModel specialTilesModel{ private get; set; }
+		[Inject] public IObstacleTilesModel obstacleTilesModel { private get; set; }
+		[Inject] public IMatchTileFactory matchTileFactory { private get; set; }
+		[Inject] public IEventDispatcher eventDispatcher { private get; set; }
 
 		public RemoveTile removeTile { private get; set; }
 
@@ -29,6 +26,7 @@ namespace MatchTileGrid
 		public IEnumerator endEnumerator { get; private set; }
 
 		private List<RemoveTile> matchTileQueue = new List<RemoveTile>();
+		private List<MatchTileSpecialType> specialTiles = new List<MatchTileSpecialType> ();
 		private int tilesToReplace = 0;
 
 		public void Execute()
@@ -53,6 +51,8 @@ namespace MatchTileGrid
 				RemoveTile removeTile = matchTileQueue [0];
 				List<MatchTile> matchTiles = removeTile.matchTiles;
 
+				eventDispatcher.Broadcast (MatchTileGridMessage.REMOVE_OBSTACLE, removeTile);
+				
 				for (int i = 0; i < matchTiles.Count; i++)
 				{					
 					Remove (matchTiles[i], removeTile);
@@ -72,10 +72,40 @@ namespace MatchTileGrid
 
 		private void Remove(MatchTile matchTile, RemoveTile removeTile)
 		{	
-			if (matchTileGridModel.CanMove(matchTile) )
+			ObstacleTile obstacle = obstacleTilesModel.GetMatchObstacle (matchTile.position);
+
+			SpecialTiles (matchTile, specialTiles);
+
+			if (removeTile.lastInChain)
+			{
+				eventDispatcher.Broadcast (MatchTileGridMessage.UPDATE_TRAPPER);
+			}
+
+			// This will active already existing special tiles, which is seperate to creating them below.
+			if (removeTile.lastInChain && specialTilesModel.createSpecialTile)
+			{
+				// nasty hack, fix this!!!
+				//Debug.Log ("Create Special Tile");
+			}
+			else if (specialTiles.Count > 0 && removeTile.lastInChain)
+			{
+				eventDispatcher.Broadcast (MatchTileGridMessage.SPECIAL_TILE, specialTiles, matchTile);
+				specialTiles.Clear ();
+			}
+			else if (matchTileGridModel.CanMove(matchTile) && 
+			         obstacleTilesModel.CanMove(obstacle) &&
+			         obstacle.type != MatchTileObstacleType.MatchToken_Trapper)
 			{
 				tilesToReplace++;
 				matchTileFactory.RemoveMatchTile (matchTile);	
+			}
+		}
+		
+		private void SpecialTiles(MatchTile tile, List<MatchTileSpecialType> specialTiles)
+		{
+			if (tile.specialTile.type != MatchTileSpecialType.Null)
+			{
+				specialTiles.Add (tile.specialTile.type);
 			}
 		}
 
@@ -85,7 +115,12 @@ namespace MatchTileGrid
 
 			yield return new WaitForSeconds (0.15f);
 
+			specialTiles.Clear ();
+
+			specialTilesModel.createSpecialTile = false;
+			obstacleTilesModel.regeneratorObstacleRemoved = false;
 			matchTileGridModel.tilesToReplace = tilesToReplace;
+			obstacleTilesModel.ClearRemovedObstacles ();
 			matchTileGridModel.ClearTilesTouched ();
 
 			tilesToReplace = 0;

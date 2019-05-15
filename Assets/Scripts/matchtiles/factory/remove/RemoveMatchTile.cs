@@ -16,9 +16,6 @@ namespace MatchTileGrid
 		[Inject]
 		public IObjectPoolModel objectPoolModel { private get; set; }
 
-		[Inject]
-		public IEventDispatcher eventDispatcher { private get; set; }
-
 		public void Remove(MatchTile matchTile)
 		{				
 			matchTile.tileObject.transform.DOKill ();

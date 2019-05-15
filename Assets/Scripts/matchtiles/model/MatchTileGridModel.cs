@@ -7,11 +7,15 @@ namespace MatchTileGrid
 {
 	public class MatchTileGridModel : IMatchTileGridModel
 	{
+		// models should not reference other models - remove this.
+		[Inject] public IObstacleTilesModel obstacleTilesModel { private get; set; }
+		
+		
 		/****************** Ready Only ******************/
 
 		// Hardcoded for the sake of this code demo, this is normally 
 		// tied to the level that the player has loaded in.
-		private readonly string _matchTileLayout = "MatchTileGridData/04_MatchTileLayout_9x7";
+		private readonly string _matchTileLayout = "MatchTileGridData/07_MatchTileLayout_9x7";
 		public string matchTileLayout { get { return _matchTileLayout; } }
 
 		private readonly string _matchTileLocation = "Prefabs/2DSprites/MatchTokens/";
@@ -50,6 +54,11 @@ namespace MatchTileGrid
 		{
 			get { return _allowTouch; }
 			set { _allowTouch = value; }
+		}
+		
+		public int GetTrapperAmount()
+		{
+			return 10; // Need to get data from MatchTileData eventually
 		}
 
 		/****************** matchTileGrid ******************/
@@ -95,6 +104,23 @@ namespace MatchTileGrid
 				AddNewTile (tile);
 			}
 		}
+		
+		public void SwapTiles(Vector2 firstPos, Vector2 secondPos)
+		{
+			MatchTile firstTile = GetMatchTile (firstPos);
+			MatchTile secondTile = GetMatchTile (secondPos);
+			if (firstTile != null && secondTile != null)
+			{
+				RemoveTile (firstPos);
+				RemoveTile (secondPos);
+
+				firstTile.position = secondPos;
+				secondTile.position = firstPos;
+
+				AddNewTile (firstTile);
+				AddNewTile (secondTile);
+			}
+		}
 
 		public List<MatchTile> GetAllMatchTilesNotOfType(MatchTileType type)
 		{
@@ -124,6 +150,23 @@ namespace MatchTileGrid
 				}
 			}
 			return MatchTileType.Null;
+		}
+		
+		public List<MatchTile> GetAllMatchTilesOfType(MatchTileType type)
+		{
+			List<MatchTile> tiles = new List<MatchTile> ();
+
+			foreach(KeyValuePair<Vector2, MatchTile> entry in GetMatchTiles())
+			{
+				MatchTile tile = entry.Value;
+
+				if (tile.type.Equals(type))
+				{
+					tiles.Add (tile);
+				}
+			}
+
+			return tiles;
 		}
 
 		public IMatchTileComponent GetMatchTileComponent(MatchTile tile)
@@ -172,6 +215,12 @@ namespace MatchTileGrid
 			if (matchTile != null)
 			{
 				Vector2 pos = matchTile.position;
+
+				var obstacle = obstacleTilesModel.CanTouchTile(pos);
+				if (!obstacle)
+				{
+					return false;
+				}
 
 				if (tilesTouched.Count == 0 && matchTile.canTouch)
 				{
@@ -236,7 +285,7 @@ namespace MatchTileGrid
 				MatchTile matchTile = GetMatchTile (pos);
 				if (matchTile != null)
 				{
-					if (!CanMove(matchTile))
+					if (!CanMove(matchTile) && obstacleTilesModel.CanMove(pos))
 					{
 						return false;
 					}
@@ -246,6 +295,39 @@ namespace MatchTileGrid
 			}
 
 			return true;
+		}
+		
+		public MatchTile GetRandomTileSpace()
+		{
+			int ranX = UnityEngine.Random.Range (0, (int)gridSize.x);
+			int ranY = UnityEngine.Random.Range (0, (int)gridSize.y);
+
+			Vector2 pos = new Vector2 (ranX, ranY);
+			MatchTile tile = null;
+
+			if (matchTileGrid.ContainsKey(pos))
+			{
+				tile = matchTileGrid [pos];
+			}
+
+			int count = 0;
+			int gridAmount = (int)gridSize.x * (int)gridSize.y;
+
+			while (tile == null || !ValidMatchTile(tile.type) && count <= gridAmount)
+			{
+				count++;
+
+				ranX = UnityEngine.Random.Range (0, (int)gridSize.x);
+				ranY = UnityEngine.Random.Range (0, (int)gridSize.y);
+
+				pos = new Vector2 (ranX, ranY);
+				if (matchTileGrid.ContainsKey(pos))
+				{
+					tile = matchTileGrid [pos];
+				}
+			}
+
+			return matchTileGrid[pos];
 		}
 
 		public bool CanMove(MatchTile tile)

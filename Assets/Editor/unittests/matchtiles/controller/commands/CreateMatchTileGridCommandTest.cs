@@ -45,7 +45,7 @@ namespace MatchTileGrid
 
 			createMatchTileGridCommand.Execute ();
 
-			matchTileFactory.Received (4).CreateRandomMatchTile (Arg.Any<Vector2> ());
+			matchTileFactory.Received (4).CreateRandomMatchTile (Arg.Any<Vector2> (), Arg.Any<MatchTileObstacleType>());
 		}
 
 		[Test]
@@ -72,8 +72,8 @@ namespace MatchTileGrid
 
 			createMatchTileGridCommand.Execute ();
 
-			matchTileFactory.Received (1).CreateMatchTile (Arg.Any<MatchTileType> (), Arg.Any<Vector2> ());
-			matchTileFactory.Received (3).CreateRandomMatchTile (Arg.Any<Vector2> ());
+			matchTileFactory.Received (1).CreateMatchTile (Arg.Any<MatchTileType> (), Arg.Any<MatchTileObstacleType>(),Arg.Any<Vector2> ());
+			matchTileFactory.Received (3).CreateRandomMatchTile (Arg.Any<Vector2> (), Arg.Any<MatchTileObstacleType>());
 		}
 
 		[Test]
@@ -100,7 +100,7 @@ namespace MatchTileGrid
 
 			createMatchTileGridCommand.Execute ();
 
-			matchTileFactory.Received (4).CreateRandomMatchTile (Arg.Any<Vector2> ());
+			matchTileFactory.Received (4).CreateRandomMatchTile (Arg.Any<Vector2> (),  Arg.Any<MatchTileObstacleType>());
 		}
 
 		[Test]

@@ -45,7 +45,7 @@ namespace MatchTileGrid
 			iEnum.MoveNext ();
 			iEnum.MoveNext ();
 
-			matchTileFactory.Received ().CreateRandomMatchTile (Arg.Any<Vector2> ());
+			matchTileFactory.Received ().CreateRandomMatchTile (Arg.Any<Vector2> (), Arg.Any<MatchTileObstacleType>());
 		}
 
 		[Test]

@@ -7,20 +7,20 @@ namespace MatchTileGrid
 {
 	public class CreateMatchTile
 	{
-		[Inject]
-		public IMatchTileGridModel matchTileGridModel { private get; set; }
-
-		[Inject]
-		public IObjectPoolModel objectPoolModel { private get; set; }
+		[Inject] public IMatchTileGridModel matchTileGridModel { private get; set; }
+		[Inject] public IObstacleTilesModel obstacleTilesModel { private get; set; }
+		[Inject] public IObjectPoolModel objectPoolModel { private get; set; }
 
 		public MatchTile Create(MatchTileType type, Vector2 position)
 		{
-			MatchTile matchTile = new MatchTile ();
-			matchTile.position = position;
-			matchTile.type = type;
-			matchTile.canMove = matchTileGridModel.CanMove(matchTile);
+			var matchTile = new MatchTile {position = position, type = type};
+
+			var canMove = matchTileGridModel.CanMove(matchTile) && obstacleTilesModel.CanMove(position);
+
+			matchTile.canMove = canMove;
 			matchTile.canTouch = matchTileGridModel.ValidMatchTile (matchTile.type);
 			matchTile.tileObject = CreateTileGameObject(type, position);
+			
 			matchTileGridModel.AddNewTile (matchTile);
 
 			return matchTile;

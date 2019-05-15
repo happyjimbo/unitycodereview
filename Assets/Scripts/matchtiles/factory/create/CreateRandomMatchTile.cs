@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using IoC;
 
@@ -13,7 +14,7 @@ namespace MatchTileGrid
 		[Inject]
 		public IMatchTileFactory matchTileFactory { private get; set; }
 
-		public MatchTile Create(Vector2 position)
+		public MatchTile Create(Vector2 position, MatchTileObstacleType obstacleType)
 		{
 			MatchTileType[] matchTilesAvailable = (MatchTileType[]) Enum.GetValues(typeof(MatchTileType));
 
@@ -26,7 +27,7 @@ namespace MatchTileGrid
 				type = matchTilesAvailable [ran];
 			}
 
-			return matchTileFactory.CreateMatchTile (type, position);
+			return matchTileFactory.CreateMatchTile (type, obstacleType, position);
 		}
 	}
 }

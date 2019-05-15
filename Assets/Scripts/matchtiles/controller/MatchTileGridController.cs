@@ -18,8 +18,12 @@ namespace MatchTileGrid
 		public IEventDispatcher eventDispatcher { private get; set; }
 
 		private MatchTileTouchedCommand matchTileTouchedCommand;
+		private CreateNewTileCommand createNewTileCommand;
 		private HideInvalidTilesCommand hideInvalidTilesCommand;
 		private RemoveMatchTilesCommand removeMatchTilesCommand;
+		private RemoveObstaclesCommand removeObstaclesCommand;
+		
+		private CreateObstacleRandomPositionCommand createObstacleRandomPositionCommand;
 
 		public void OnInject ()
 		{
@@ -64,6 +68,19 @@ namespace MatchTileGrid
 
 			removeMatchTilesCommand = commandFactory.Build<RemoveMatchTilesCommand> ();
 			eventDispatcher.AddListener <RemoveTile> (MatchTileGridMessage.REMOVE_TILES, RemoveTiles);
+			
+			removeObstaclesCommand = commandFactory.Build<RemoveObstaclesCommand> ();
+			eventDispatcher.AddListener <RemoveTile> (MatchTileGridMessage.REMOVE_OBSTACLE, RemoveObstacles);
+			
+			var updateTrapperTileCommand = commandFactory.Build<UpdateTrapperTileCommand> ();
+			eventDispatcher.AddListener (MatchTileGridMessage.UPDATE_TRAPPER, updateTrapperTileCommand.Execute);
+			eventDispatcher.AddListener (MatchTileGridMessage.REMOVE_TILES_COMPLETE, updateTrapperTileCommand.SwapTiles);
+
+			ICommand createNewRegeneratorCommand = commandFactory.Build<CreateNewRegeneratorCommand> ();
+			eventDispatcher.AddListener (MatchTileGridMessage.REMOVE_TILES_COMPLETE, createNewRegeneratorCommand.Execute);
+
+			createObstacleRandomPositionCommand = commandFactory.Build<CreateObstacleRandomPositionCommand> ();
+			eventDispatcher.AddListener <MatchTileObstacleType> (MatchTileGridMessage.CREATE_OBSTACLE_RAN_POS, CreateObstacleRandomPosition);
 
 			ICommand positionTilesCommand = commandFactory.Build<PositionTilesCommand> ();
 			positionTilesCommand.Execute ();
@@ -95,6 +112,17 @@ namespace MatchTileGrid
 		{
 			removeMatchTilesCommand.removeTile = removeTile;
 			removeMatchTilesCommand.Execute ();
+		}
+		
+		private void RemoveObstacles(RemoveTile removeTile)
+		{
+			removeObstaclesCommand.removeTile = removeTile;
+			removeObstaclesCommand.Execute ();
+		}
+		private void CreateObstacleRandomPosition(MatchTileObstacleType type)
+		{
+			createObstacleRandomPositionCommand.obstacleType = type;
+			createObstacleRandomPositionCommand.Execute ();
 		}
 	}
 }

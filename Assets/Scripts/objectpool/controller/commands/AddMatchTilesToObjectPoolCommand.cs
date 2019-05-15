@@ -23,6 +23,18 @@ namespace ObjectPool
 			{
 				Create(matchTileTypes[i].ToString(), dir, 10);	
 			}
+			
+			MatchTileObstacleType[] obstacleType = (MatchTileObstacleType[]) Enum.GetValues(typeof(MatchTileObstacleType));
+			for (int i = 0; i < obstacleType.Length; i++)
+			{
+				Create(obstacleType[i].ToString(), dir, 10);	
+			}
+
+			MatchTileSpecialType[] specialType = (MatchTileSpecialType[]) Enum.GetValues(typeof(MatchTileSpecialType));
+			for (int i = 0; i < specialType.Length; i++)
+			{
+				Create(specialType[i].ToString(), dir, 5);	
+			}
 		}
 
 		private void Create(string type, string dir, int count = 5)
