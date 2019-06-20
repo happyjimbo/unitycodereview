@@ -27,10 +27,7 @@ find the 'GameContext' script attached - select this script to find our IoC Cont
 
 ### What is missing? ###
 
-Please note that there is no UI in this code example, this is due to the project originally using NGUI 3 (more mature 
-UI system than the recently released 'New UI' by Unity), which is paid for software and needs a license - of which I 
-cannot guarantee that the reader (or organisation) has. Please note that I'm a fan of the 
-Presentation Model (http://martinfowler.com/eaaDev/PresentationModel.html), which enables a separation of concern and 
+Please note that there is no UI in this code example, this is due to the project originally using NGUI 3, which is paid for software and needs a license - of which I cannot guarantee that the reader (or organisation) has. Please note that I'm a fan of the Presentation Model (http://martinfowler.com/eaaDev/PresentationModel.html), which enables a separation of concern and 
 prevents our UI from directly interacting with system code (and visa versa) and is fantastic for creating unit tests 
 without any mocking of view objects involved.
 
